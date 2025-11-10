@@ -3,8 +3,47 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+// TypeScript types for articles
+type MainArticle = {
+  type: "main";
+  title: string;
+  author: string;
+  image?: string;
+  content: string;
+};
+
+type SideArticle = {
+  type: "side";
+  title: string;
+  author: string;
+  content: string;
+};
+
+type VideoArticle = {
+  type: "video";
+  title: string;
+  videoUrl: string;
+  caption: string;
+};
+
+type ImageArticle = {
+  type: "image";
+  title: string;
+  image: string;
+  caption: string;
+};
+
+type Article = MainArticle | SideArticle | VideoArticle | ImageArticle;
+
+type NewspaperPage = {
+  pageNumber: number;
+  date: string;
+  headline: string;
+  articles: Article[];
+};
+
 // Sample newspaper data - you can replace this with real content or fetch from an API
-const newspaperPages = [
+const newspaperPages: NewspaperPage[] = [
   {
     pageNumber: 1,
     date: "November 10, 2025",
@@ -170,9 +209,7 @@ export default function NewspaperPage() {
                     </div>
                   )}
                   
-                  <div className="text-gray-300 leading-relaxed space-y-4" style={{
-                    columnCount: window.innerWidth > 768 ? 2 : 1,
-                    columnGap: '2rem',
+                  <div className="text-gray-300 leading-relaxed space-y-4 md:columns-2 md:gap-8" style={{
                     fontFamily: 'Georgia, serif',
                     fontSize: '1.05rem',
                     textAlign: 'justify'
