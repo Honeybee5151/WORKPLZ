@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const servers = Array.from({ length: 20 }).map((_, i) => ({
   name: `Server ${i + 1}`,
-  image: `/server${(i % 5) + 1}.svg`,
+  image: `/server${(i % 5) + 1}.png`,
   players: Math.floor(Math.random() * 500) + 50,
   description: `This is a popular RotMG private server with custom features and an active community. Join ${Math.floor(Math.random() * 500) + 50} players online now!`,
   website: `https://server${i + 1}.example.com`,
@@ -239,25 +239,25 @@ export default function Home() {
             </div>
 
             {/* Server Info Display */}
-            <div className="max-w-3xl mx-auto bg-[#36393f] rounded-xl p-8 border border-[#202225] shadow-xl min-h-[200px]">
+            <div className="max-w-4xl mx-auto bg-[#36393f] rounded-xl p-10 border border-[#202225] shadow-xl min-h-[300px]">
               {selectedServer !== null ? (
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-2xl font-bold text-white">
+                <div className="space-y-6">
+                  <div className="flex items-center justify-between flex-wrap gap-4">
+                    <h3 className="text-3xl font-bold text-white">
                       {servers[selectedServer].name}
                     </h3>
-                    <span className="px-4 py-2 bg-[#3ba55d] text-white rounded-lg font-semibold">
+                    <span className="px-5 py-2 bg-[#3ba55d] text-white rounded-lg font-semibold text-lg">
                       {servers[selectedServer].players} Players Online
                     </span>
                   </div>
-                  <p className="text-gray-300 leading-relaxed">
+                  <p className="text-gray-300 leading-relaxed text-lg">
                     {servers[selectedServer].description}
                   </p>
-                  <div className="flex gap-4 pt-4">
-                    <button className="flex-1 bg-[#5865f2] hover:bg-[#4752c4] text-white font-semibold py-3 px-6 rounded-lg transition-colors">
+                  <div className="flex gap-4 pt-6">
+                    <button className="flex-1 bg-[#5865f2] hover:bg-[#4752c4] text-white font-semibold py-4 px-8 rounded-lg transition-colors text-lg">
                       Join Server
                     </button>
-                    <button className="flex-1 bg-[#2f3136] hover:bg-[#202225] text-white font-semibold py-3 px-6 rounded-lg transition-colors border border-[#202225]">
+                    <button className="flex-1 bg-[#2f3136] hover:bg-[#202225] text-white font-semibold py-4 px-8 rounded-lg transition-colors border border-[#202225] text-lg">
                       Visit Website
                     </button>
                   </div>
@@ -265,7 +265,7 @@ export default function Home() {
               ) : (
                 <div className="flex flex-col items-center justify-center h-full text-gray-400">
                   <svg
-                    className="w-16 h-16 mb-4"
+                    className="w-20 h-20 mb-4"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -277,7 +277,7 @@ export default function Home() {
                       d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"
                     />
                   </svg>
-                  <p className="text-lg">Click on a server to view details</p>
+                  <p className="text-xl">Click on a server to view details</p>
                 </div>
               )}
             </div>
