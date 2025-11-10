@@ -37,21 +37,33 @@ export default function Home() {
     return () => cancelAnimationFrame(anim);
   }, []);
 
-  const handleMouseDown = (e: React.MouseEvent) => {
+  const handlePointerStart = (clientX: number) => {
     isDragging.current = true;
     hasInteracted.current = true;
-    startX.current = e.clientX;
+    startX.current = clientX;
     scrollStart.current = offset;
   };
 
-  const handleMouseMove = (e: React.MouseEvent) => {
+  const handlePointerMove = (clientX: number) => {
     if (!isDragging.current) return;
-    const dx = e.clientX - startX.current;
+    const dx = clientX - startX.current;
     setOffset(scrollStart.current + dx);
   };
 
-  const handleMouseUp = () => {
+  const handlePointerEnd = () => {
     isDragging.current = false;
+  };
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    handlePointerStart(e.clientX);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    handlePointerMove(e.clientX);
+  };
+
+  const handleMouseUp = () => {
+    handlePointerEnd();
   };
 
   const handleServerClick = (index: number) => {
@@ -150,9 +162,15 @@ export default function Home() {
               onMouseMove={handleMouseMove}
               onMouseUp={handleMouseUp}
               onMouseLeave={handleMouseUp}
-              onTouchStart={(e) => handleMouseDown(e.touches[0] as any)}
-              onTouchMove={(e) => handleMouseMove(e.touches[0] as any)}
-              onTouchEnd={handleMouseUp}
+              onTouchStart={(e) => {
+                const touch = e.touches[0];
+                if (touch) handlePointerStart(touch.clientX);
+              }}
+              onTouchMove={(e) => {
+                const touch = e.touches[0];
+                if (touch) handlePointerMove(touch.clientX);
+              }}
+              onTouchEnd={handlePointerEnd}
             >
               <div
                 ref={scrollRef}
