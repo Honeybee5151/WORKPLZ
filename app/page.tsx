@@ -19,18 +19,18 @@ export default function Home() {
         </p>
       </header>
 
-      {/* Main carousel */}
+      {/* Carousel */}
       <main className="flex flex-col flex-1 items-center justify-center p-8 sm:p-16 gap-12 overflow-hidden relative">
         <h2 className="text-2xl sm:text-3xl font-semibold mb-6">
           Featured PServers
         </h2>
 
         <div className="w-full overflow-hidden relative h-52">
-          <div className="flex animate-scroll whitespace-nowrap">
-            {servers.concat(servers).map((server, i) => (
+          <div className="flex min-w-max animate-scroll">
+            {servers.map((server, i) => (
               <div
                 key={i}
-                className="inline-flex flex-col items-center justify-center mr-12 last:mr-0"
+                className="flex flex-col items-center justify-center mr-12 last:mr-0"
               >
                 <Image
                   src={server.image}
@@ -50,7 +50,7 @@ export default function Home() {
       <style jsx>{`
         @keyframes scroll {
           0% { transform: translateX(0); }
-          100% { transform: translateX(-2400px); } /* adjust to total width of carousel */
+          100% { transform: translateX(-50%); } /* 50% of the flex width */
         }
         .animate-scroll {
           display: flex;
