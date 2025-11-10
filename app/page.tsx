@@ -5,35 +5,35 @@ import Link from "next/link";
 const servers = [
   {
     name: "Evershade",
-    image: "/serverIcons/evershadeImage.png",
+    image: "/serverIcons/evershadeImage",
     players: Math.floor(Math.random() * 500) + 50,
     description: "Evershade is a popular RotMG private server with custom features and an active community. Experience unique dungeons and items!",
     website: "https://evershade.example.com",
   },
   {
     name: "Server 2",
-    image: "/serverIcons/server2.png",
+    image: "/serverIcons/server2",
     players: Math.floor(Math.random() * 500) + 50,
     description: "This is a popular RotMG private server with custom features and an active community.",
     website: "https://server2.example.com",
   },
   {
     name: "Server 3",
-    image: "/serverIcons/server3.png",
+    image: "/serverIcons/server3",
     players: Math.floor(Math.random() * 500) + 50,
     description: "This is a popular RotMG private server with custom features and an active community.",
     website: "https://server3.example.com",
   },
   {
     name: "Server 4",
-    image: "/serverIcons/server4.png",
+    image: "/serverIcons/server4",
     players: Math.floor(Math.random() * 500) + 50,
     description: "This is a popular RotMG private server with custom features and an active community.",
     website: "https://server4.example.com",
   },
   {
     name: "Server 5",
-    image: "/serverIcons/server5.png",
+    image: "/serverIcons/server5",
     players: Math.floor(Math.random() * 500) + 50,
     description: "This is a popular RotMG private server with custom features and an active community.",
     website: "https://server5.example.com",
@@ -251,7 +251,7 @@ export default function Home() {
                           width={120}
                           height={120}
                           draggable="false"
-                          className="rounded-full bg-[#36393f] object-cover select-none pointer-events-none"
+                          className="rounded-full bg-[#36393f] object-cover select-none"
                           onError={(e) => {
                             console.error(`Failed to load image: ${server.image}`);
                             e.currentTarget.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="120" height="120"%3E%3Crect fill="%2336393f" width="120" height="120"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="white" font-size="48"%3E?%3C/text%3E%3C/svg%3E';
