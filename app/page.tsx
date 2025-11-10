@@ -278,7 +278,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="bg-[#202225] border-t border-[#2f3136] py-6 text-center text-gray-400">
-        <p>© 2025 RotMG Private Server Hub. Community-driven and maintained.</p>
+        <p>© Easter egg: play evershade</p>
       </footer>
     </div>
   );
