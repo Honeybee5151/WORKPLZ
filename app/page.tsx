@@ -3,13 +3,43 @@ import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 
-const servers = Array.from({ length: 20 }).map((_, i) => ({
-  name: `Server ${i + 1}`,
-  image: `/server${(i % 5) + 1}.png`,
-  players: Math.floor(Math.random() * 500) + 50,
-  description: `This is a popular RotMG private server with custom features and an active community. Join ${Math.floor(Math.random() * 500) + 50} players online now!`,
-  website: `https://server${i + 1}.example.com`,
-}));
+const servers = [
+  {
+    name: "Evershade",
+    image: "/evershadeImage.png",
+    players: Math.floor(Math.random() * 500) + 50,
+    description: "Evershade is a popular RotMG private server with custom features and an active community. Experience unique dungeons and items!",
+    website: "https://evershade.example.com",
+  },
+  {
+    name: "Server 2",
+    image: "/server2.png",
+    players: Math.floor(Math.random() * 500) + 50,
+    description: "This is a popular RotMG private server with custom features and an active community.",
+    website: "https://server2.example.com",
+  },
+  {
+    name: "Server 3",
+    image: "/server3.png",
+    players: Math.floor(Math.random() * 500) + 50,
+    description: "This is a popular RotMG private server with custom features and an active community.",
+    website: "https://server3.example.com",
+  },
+  {
+    name: "Server 4",
+    image: "/server4.png",
+    players: Math.floor(Math.random() * 500) + 50,
+    description: "This is a popular RotMG private server with custom features and an active community.",
+    website: "https://server4.example.com",
+  },
+  {
+    name: "Server 5",
+    image: "/server5.png",
+    players: Math.floor(Math.random() * 500) + 50,
+    description: "This is a popular RotMG private server with custom features and an active community.",
+    website: "https://server5.example.com",
+  },
+];
 
 export default function Home() {
   const [offset, setOffset] = useState(0);
