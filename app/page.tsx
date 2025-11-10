@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 
@@ -245,12 +244,12 @@ export default function Home() {
                             : 'border-[#202225] hover:border-[#7289da]'
                         }`}
                       >
-                        <Image
+                        <img
                           src={server.image}
                           alt={server.name}
                           width={120}
                           height={120}
-                          className="rounded-full bg-[#36393f]"
+                          className="rounded-full bg-[#36393f] object-cover"
                         />
                       </div>
 
