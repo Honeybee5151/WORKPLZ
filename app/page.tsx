@@ -1,9 +1,9 @@
-"use client"; // Required for animations/hooks in App Router
+"use client";
 import Image from "next/image";
 
 const servers = Array.from({ length: 20 }).map((_, i) => ({
   name: `PServer ${i + 1}`,
-  image: `/server${(i % 5) + 1}.svg`, // Use 5 sample images, rotate them
+  image: `/server${(i % 5) + 1}.svg`, // placeholder images
 }));
 
 export default function Home() {
@@ -25,20 +25,20 @@ export default function Home() {
           Featured PServers
         </h2>
 
-        {/* Rotating image carousel */}
-        <div className="flex gap-16 w-full overflow-hidden relative h-40">
-          <div className="flex animate-scroll gap-16">
+        {/* Horizontal moving carousel */}
+        <div className="w-full overflow-hidden relative h-52">
+          <div className="flex animate-scroll gap-12">
             {servers.map((server, i) => (
               <div
                 key={i}
-                className="flex flex-col items-center justify-center animate-spin-slow"
+                className="flex flex-col items-center justify-center"
               >
                 <Image
                   src={server.image}
                   alt={server.name}
-                  width={80}
-                  height={80}
-                  className="rounded-full border-2 border-gray-300"
+                  width={120} // bigger circles
+                  height={120}
+                  className="rounded-full border-4 border-gray-300"
                 />
                 <span className="mt-2 text-sm text-center">{server.name}</span>
               </div>
@@ -47,14 +47,14 @@ export default function Home() {
             {servers.map((server, i) => (
               <div
                 key={`repeat-${i}`}
-                className="flex flex-col items-center justify-center animate-spin-slow"
+                className="flex flex-col items-center justify-center"
               >
                 <Image
                   src={server.image}
                   alt={server.name}
-                  width={80}
-                  height={80}
-                  className="rounded-full border-2 border-gray-300"
+                  width={120}
+                  height={120}
+                  className="rounded-full border-4 border-gray-300"
                 />
                 <span className="mt-2 text-sm text-center">{server.name}</span>
               </div>
@@ -62,21 +62,6 @@ export default function Home() {
           </div>
         </div>
       </main>
-
-      {/* Footer */}
-      <footer className="bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300 p-6 flex flex-col sm:flex-row justify-between items-center gap-4">
-        <p>
-          &copy; {new Date().getFullYear()} PServer Hub — All rights reserved. 🚀
-        </p>
-        <div className="flex gap-4">
-          <a href="https://nextjs.org" className="hover:underline" target="_blank">
-            Next.js
-          </a>
-          <a href="https://vercel.com" className="hover:underline" target="_blank">
-            Vercel
-          </a>
-        </div>
-      </footer>
 
       {/* Animations */}
       <style jsx>{`
@@ -86,15 +71,7 @@ export default function Home() {
         }
         .animate-scroll {
           display: flex;
-          animation: scroll 40s linear infinite;
-        }
-
-        @keyframes spin-slow {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-        .animate-spin-slow {
-          animation: spin-slow 20s linear infinite;
+          animation: scroll 60s linear infinite; /* slower horizontal scroll */
         }
       `}</style>
     </div>
