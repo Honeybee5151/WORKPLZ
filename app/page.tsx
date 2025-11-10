@@ -77,6 +77,20 @@ export default function Home() {
       <header className="bg-[#202225] border-b border-[#2f3136] shadow-lg">
         <div className="bg-gradient-to-r from-[#5865f2] to-[#7289da] h-2"></div>
         <div className="container mx-auto px-6 py-8">
+          {/* Pixel Art Banner */}
+          <div className="flex justify-center mb-6">
+            <img 
+              src="/banner.png" 
+              alt="RotMG Hub Banner"
+              className="rounded-xl shadow-lg"
+              style={{
+                imageRendering: 'pixelated',
+                maxWidth: '1200px',
+                width: '100%',
+                height: 'auto'
+              }}
+            />
+          </div>
           <h1 className="text-4xl sm:text-5xl font-bold text-white tracking-tight">
             RotMG Private Server Hub
           </h1>
@@ -278,7 +292,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="bg-[#202225] border-t border-[#2f3136] py-6 text-center text-gray-400">
-        <p> Easter egg: play evershade</p>
+        <p>© 2025 RotMG Private Server Hub. Community-driven and maintained.</p>
       </footer>
     </div>
   );
