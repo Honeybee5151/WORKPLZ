@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
+import Link from "next/link";
 
 const servers = Array.from({ length: 20 }).map((_, i) => ({
   name: `Server ${i + 1}`,
@@ -73,12 +74,12 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[#36393f] text-gray-100 flex flex-col">
-      {/* Header with decorative art wrapper */}
+      {/* Header with pixel art banner */}
       <header className="bg-[#202225] border-b border-[#2f3136] shadow-lg">
         <div className="bg-gradient-to-r from-[#5865f2] to-[#7289da] h-2"></div>
-        <div className="container mx-auto px-6 py-8">
+        <div className="container mx-auto px-6 py-6">
           {/* Pixel Art Banner */}
-          <div className="flex justify-center mb-6">
+          <div className="flex justify-center">
             <img 
               src="/banner.png" 
               alt="RotMG Hub Banner"
@@ -91,12 +92,6 @@ export default function Home() {
               }}
             />
           </div>
-          <h1 className="text-4xl sm:text-5xl font-bold text-white tracking-tight">
-            RotMG Private Server Hub
-          </h1>
-          <p className="mt-3 text-lg text-gray-300 max-w-2xl">
-            Your gateway to the best Realm of the Mad God private servers
-          </p>
         </div>
       </header>
 
@@ -105,8 +100,8 @@ export default function Home() {
         <div className="container mx-auto px-6 py-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {/* Tutorial Card */}
-            <button
-              onClick={() => window.open('/tutorial', '_blank')}
+            <Link
+              href="/tutorial"
               className="group bg-[#2f3136] hover:bg-[#36393f] rounded-xl p-8 transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 border border-[#202225] hover:border-[#5865f2]"
             >
               <div className="flex flex-col items-center gap-4">
@@ -130,11 +125,11 @@ export default function Home() {
                   Learn how to get started with private servers
                 </p>
               </div>
-            </button>
+            </Link>
 
             {/* Newspaper Card */}
-            <button
-              onClick={() => window.open('/newspaper', '_blank')}
+            <Link
+              href="/newspaper"
               className="group bg-[#2f3136] hover:bg-[#36393f] rounded-xl p-8 transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 border border-[#202225] hover:border-[#5865f2]"
             >
               <div className="flex flex-col items-center gap-4">
@@ -158,7 +153,7 @@ export default function Home() {
                   Latest news and updates from the community
                 </p>
               </div>
-            </button>
+            </Link>
           </div>
         </div>
 
