@@ -225,9 +225,10 @@ export default function Home() {
                     <button
                       key={i}
                       onClick={() => handleServerClick(actualIndex)}
-                      className={`flex flex-col items-center justify-center mx-6 transition-all duration-300 ${
+                      className={`flex flex-col items-center justify-center mx-6 ${
                         isSelected ? 'scale-110' : 'hover:scale-105'
                       }`}
+                      style={{ transition: 'transform 0.3s ease' }}
                     >
                       {/* Player count */}
                       <div className="mb-2 px-4 py-1 bg-[#5865f2] rounded-full">
@@ -250,6 +251,10 @@ export default function Home() {
                           width={120}
                           height={120}
                           className="rounded-full bg-[#36393f] object-cover"
+                          onError={(e) => {
+                            console.error(`Failed to load image: ${server.image}`);
+                            e.currentTarget.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="120" height="120"%3E%3Crect fill="%2336393f" width="120" height="120"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="white"%3E?%3C/text%3E%3C/svg%3E';
+                          }}
                         />
                       </div>
 
