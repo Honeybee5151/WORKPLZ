@@ -64,7 +64,7 @@ export default function Home() {
   const scrollStart = useRef(0);
   const hasInteracted = useRef(false);
 
-  // aFetch player counts
+  // Fetch player counts
   useEffect(() => {
     const fetchPlayerCounts = async () => {
       try {
@@ -226,7 +226,7 @@ export default function Home() {
                     <button
                       key={i}
                       onClick={() => handleServerClick(actualIndex)}
-                      className={`flex flex-col items-center justify-center mx-6 ${
+                      className={`flex flex-col items-center justify-center mx-10 ${
                         isSelected ? 'scale-110' : 'hover:scale-105'
                       }`}
                       style={{ transition: 'transform 0.3s ease' }}
@@ -238,7 +238,7 @@ export default function Home() {
                       </div>
 
                       <div
-                        className={`relative rounded-full border-4 transition-all duration-300 ${
+                        className={`relative rounded-full border-8 transition-all duration-300 ${
                           isSelected
                             ? 'border-[#5865f2] shadow-lg shadow-[#5865f2]/50'
                             : 'border-[#202225] hover:border-[#7289da]'
@@ -247,8 +247,8 @@ export default function Home() {
                         <Image
                           src={server.image}
                           alt={server.name}
-                          width={180}
-                          height={180}
+                          width={240}
+                          height={240}
                           unoptimized
                           draggable={false}
                           className="rounded-full bg-[#36393f] object-cover select-none"
