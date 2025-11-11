@@ -218,62 +218,24 @@ export default function Home() {
                   transition: isDragging.current ? 'none' : 'transform 0.1s ease-out',
                 }}
               >
-               {servers.concat(servers).map((server, i) => {
-  const actualIndex = i % servers.length;
-  const isSelected = selectedServer === actualIndex;
-  return (
-    <button
-      key={i}
-      onClick={() => handleServerClick(actualIndex)}
-      className={`flex flex-col items-center justify-center mx-6 ${
-        isSelected ? 'scale-110' : 'hover:scale-105'
-      }`}
-      style={{ transition: 'transform 0.3s ease' }}
-    >
-      {/* Player count */}
-      <div className="mb-2 px-4 py-1 bg-[#5865f2] rounded-full">
-        <span className="text-sm font-semibold text-white">
-          👥 {server.players} online
-        </span>
-      </div>
-
-      {/* Server icon circle (fixed size) */}
-      <div
-        className={`relative rounded-full border-4 transition-all duration-300 ${
-          isSelected
-            ? 'border-[#5865f2] shadow-lg shadow-[#5865f2]/50'
-            : 'border-[#202225] hover:border-[#7289da]'
-        }`}
-        style={{
-          width: '120px',       // fixed width
-          height: '120px',      // fixed height
-          flexShrink: 0,        // prevent shrinking
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <img
-          src={server.image}
-          alt={server.name}
-          width={120}           // fixed width
-          height={120}          // fixed height
-          draggable="false"
-          className="rounded-full bg-[#36393f] object-cover select-none"
-        />
-      </div>
-
-      {/* Server name */}
-      <span
-        className={`mt-3 text-base font-semibold text-center transition-colors ${
-          isSelected ? 'text-[#5865f2]' : 'text-gray-300'
-        }`}
-      >
-        {server.name}
-      </span>
-    </button>
-  );
-})}
+                {servers.concat(servers).map((server, i) => {
+                  const actualIndex = i % servers.length;
+                  const isSelected = selectedServer === actualIndex;
+                  return (
+                    <button
+                      key={i}
+                      onClick={() => handleServerClick(actualIndex)}
+                      className={`flex flex-col items-center justify-center mx-6 ${
+                        isSelected ? 'scale-110' : 'hover:scale-105'
+                      }`}
+                      style={{ transition: 'transform 0.3s ease' }}
+                    >
+                      {/* Player count */}
+                      <div className="mb-2 px-4 py-1 bg-[#5865f2] rounded-full">
+                        <span className="text-sm font-semibold text-white">
+                          👥 {server.players} online
+                        </span>
+                      </div>
 
                       {/* Server icon circle */}
                       <div
