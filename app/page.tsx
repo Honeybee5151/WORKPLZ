@@ -233,7 +233,7 @@ export default function Home() {
                     >
                       <div className="mb-2 px-4 py-1 bg-[#5865f2] rounded-full">
                         <span className="text-sm font-semibold text-white">
-                          👥 {playerCount} online
+                          {playerCount} online
                         </span>
                       </div>
 
@@ -247,8 +247,8 @@ export default function Home() {
                         <Image
                           src={server.image}
                           alt={server.name}
-                          width={120}
-                          height={120}
+                          width={180}
+                          height={180}
                           unoptimized
                           draggable={false}
                           className="rounded-full bg-[#36393f] object-cover select-none"
