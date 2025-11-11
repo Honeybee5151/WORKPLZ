@@ -3,7 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-// Sample newspaper data - replace with your actual newspapers
+// Sample newspaper data - replace with your actual newspaperS
 const newspapers = [
   {
     issue: 1,
