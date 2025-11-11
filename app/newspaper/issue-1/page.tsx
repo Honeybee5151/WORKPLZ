@@ -1,350 +1,335 @@
 "use client";
 import { useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 
-// Sample newspaper data - replace with your actual newspapers
-const newspapers = [
+// TypeScript types for articles
+type MainArticle = {
+  type: "main";
+  title: string;
+  author: string;
+  image?: string;
+  content: string;
+};
+
+type SideArticle = {
+  type: "side";
+  title: string;
+  author: string;
+  content: string;
+};
+
+type VideoArticle = {
+  type: "video";
+  title: string;
+  videoUrl: string;
+  caption: string;
+};
+
+type ImageArticle = {
+  type: "image";
+  title: string;
+  image: string;
+  caption: string;
+};
+
+type Article = MainArticle | SideArticle | VideoArticle | ImageArticle;
+
+type NewspaperPage = {
+  pageNumber: number;
+  date: string;
+  headline: string;
+  articles: Article[];
+};
+
+// Sample newspaper data - you can replace this with real content or fetch from an API
+const newspaperPages: NewspaperPage[] = [
   {
-    issue: 1,
+    pageNumber: 1,
     date: "November 10, 2025",
-    title: "Major Update Hits Top Private Servers",
-    coverImage: "/newspapers/issue-1-cover.png",
-    fullUrl: "/newspaper/issue-1",
+    headline: "Major Update Hits Top Private Servers",
+    articles: [
+      {
+        type: "main",
+        title: "New Dungeon Released Across Multiple Servers",
+        author: "By John Realm",
+        image: "/news1.jpg",
+        content: `In a coordinated effort, three of the largest RotMG private servers have simultaneously released the highly anticipated "Abyss of Demons" dungeon. This marks the first time private servers have worked together on a major content release.
+
+The new dungeon features challenging boss mechanics, unique loot drops, and a progressive difficulty system that scales with party size. Early players report that the dungeon takes approximately 15-20 minutes to complete and offers substantial rewards for those brave enough to venture into its depths.
+
+Server administrators report record player counts, with over 2,000 concurrent players across all participating servers. "This is what the community has been asking for," said one administrator who wished to remain anonymous. "We're seeing players who haven't logged in for months returning to try the new content."`,
+      },
+      {
+        type: "side",
+        title: "Player Reaches Level 100 in Record Time",
+        author: "By Sarah Knight",
+        content: `A dedicated player known as "SpeedRunner_Pro" has achieved level 100 in just 8 hours of gameplay, setting a new community record. The feat was accomplished through a combination of optimal dungeon routing and coordination with guild members.`,
+      },
+      {
+        type: "video",
+        title: "Community Highlights: Epic Moments",
+        videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        caption: "Watch the best moments from last week's community events",
+      },
+    ],
   },
   {
-    issue: 2,
-    date: "November 11, 2025",
-    title: "Community Events and Tournaments",
-    coverImage: "/newspapers/issue-2-cover.png",
-    fullUrl: "/newspaper/issue-2",
+    pageNumber: 2,
+    date: "November 10, 2025",
+    headline: "Community Events and Tournaments",
+    articles: [
+      {
+        type: "main",
+        title: "Annual PvP Tournament Announced",
+        author: "By Mike Battle",
+        image: "/news2.jpg",
+        content: `The annual cross-server PvP tournament is set to begin next month, with a prize pool exceeding $5,000 in rewards. Registration opens next week, and organizers expect over 500 participants from servers worldwide.
+
+This year's tournament introduces a new bracket system designed to give players of all skill levels a chance to compete. "We want everyone to feel like they have a shot," explained tournament director Alex Chen. "The new format includes beginner, intermediate, and expert divisions."
+
+Sponsors for the event include several prominent gaming peripheral companies and content creators. All matches will be livestreamed on multiple platforms, with professional commentators providing analysis throughout the tournament.`,
+      },
+      {
+        type: "side",
+        title: "Server Maintenance Schedule",
+        author: "By Tech Team",
+        content: `Regular maintenance windows are scheduled for this week. Server downtime is expected to last 2-3 hours during off-peak hours. Players are advised to check individual server Discord channels for specific timing.`,
+      },
+      {
+        type: "image",
+        title: "Screenshot of the Week",
+        image: "/screenshot1.jpg",
+        caption: "Player 'ArtisticRealm' captured this stunning moment during a Realm clear",
+      },
+    ],
   },
   {
-    issue: 3,
-    date: "November 12, 2025",
-    title: "Developer Insights and Updates",
-    coverImage: "/newspapers/issue-3-cover.png",
-    fullUrl: "/newspaper/issue-3",
+    pageNumber: 3,
+    date: "November 10, 2025",
+    headline: "Developer Insights and Updates",
+    articles: [
+      {
+        type: "main",
+        title: "Behind the Scenes: Creating Custom Content",
+        author: "By Dev Team",
+        image: "/news3.jpg",
+        content: `Ever wondered how custom dungeons and items make it into your favorite private servers? We sat down with several development teams to learn about their creative process.
+
+"It starts with community feedback," explains one developer. "We read every suggestion, every complaint, every idea. Then we prototype rapidly, testing dozens of concepts before settling on something that feels right."
+
+The development cycle for a major dungeon typically takes 2-3 months from concept to release. This includes sprite work, programming boss mechanics, balancing loot tables, and extensive playtesting with trusted community members.
+
+Quality assurance is crucial. "We've learned the hard way that rushing content leads to bugs and player frustration," notes another developer. "It's better to delay and get it right than to release something broken."`,
+      },
+      {
+        type: "side",
+        title: "Top 5 Most Requested Features",
+        author: "By Community Manager",
+        content: `Based on community polls, here are the most requested features: 1) Guild housing system, 2) Expanded vault space, 3) Achievement system, 4) Cross-server trading, 5) Mobile app support. Development teams are actively working on several of these.`,
+      },
+    ],
   },
 ];
 
-// Sample poll data
-const polls = [
-  {
-    id: 1,
-    question: "What's your favorite dungeon?",
-    options: ["Shatters", "Void", "O3", "Fungal Cavern"],
-    votes: [245, 189, 312, 156],
-    isActive: true,
-    endDate: "November 20, 2025",
-  },
-  {
-    id: 2,
-    question: "Which server do you play most?",
-    options: ["Evershade", "T's Realms", "FP", "Valor", "DOM"],
-    votes: [180, 145, 98, 167, 123],
-    isActive: false,
-    endDate: "November 8, 2025",
-  },
-];
+export default function NewspaperPage() {
+  const [currentPage, setCurrentPage] = useState(0);
+  const totalPages = newspaperPages.length;
+  const page = newspaperPages[currentPage];
 
-export default function NewspaperMain() {
-  const [searchIssue, setSearchIssue] = useState("");
-  const [selectedNewspaper, setSelectedNewspaper] = useState(newspapers[0]);
-  const [showActivePollsOnly, setShowActivePollsOnly] = useState(true);
-
-  const handleSearch = () => {
-    const issueNum = parseInt(searchIssue);
-    const found = newspapers.find(n => n.issue === issueNum);
-    if (found) {
-      setSelectedNewspaper(found);
-    } else {
-      alert(`Issue #${issueNum} not found`);
+  const goToNextPage = () => {
+    if (currentPage < totalPages - 1) {
+      setCurrentPage(currentPage + 1);
     }
   };
 
-  const goToLatest = () => {
-    setSelectedNewspaper(newspapers[0]);
-    setSearchIssue("");
-  };
-
-  const goToPrevious = () => {
-    const currentIndex = newspapers.findIndex(n => n.issue === selectedNewspaper.issue);
-    if (currentIndex < newspapers.length - 1) {
-      setSelectedNewspaper(newspapers[currentIndex + 1]);
+  const goToPreviousPage = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
     }
   };
-
-  const goToNext = () => {
-    const currentIndex = newspapers.findIndex(n => n.issue === selectedNewspaper.issue);
-    if (currentIndex > 0) {
-      setSelectedNewspaper(newspapers[currentIndex - 1]);
-    }
-  };
-
-  const filteredPolls = showActivePollsOnly ? polls.filter(p => p.isActive) : polls;
 
   return (
     <div className="min-h-screen bg-[#36393f] text-gray-100">
-      {/* Header with banner */}
+      {/* Header */}
       <header className="bg-[#202225] border-b border-[#2f3136] shadow-lg">
         <div className="bg-gradient-to-r from-[#5865f2] to-[#7289da] h-2"></div>
-        <div className="container mx-auto px-6 py-6">
+        <div className="container mx-auto px-6 py-8">
           <Link href="/" className="inline-block mb-4 text-[#5865f2] hover:text-[#7289da] transition-colors">
             ← Back to Hub
           </Link>
-          <div className="flex justify-center">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img 
-              src="/banner.png" 
-              alt="RotMG Hub Banner"
-              className="rounded-xl shadow-lg"
-              style={{
-                imageRendering: 'pixelated',
-                maxWidth: '1200px',
-                width: '100%',
-                height: 'auto'
-              }}
-            />
+          <div className="text-center">
+            <h1 className="text-5xl sm:text-6xl font-bold text-white tracking-tight mb-2" style={{
+              fontFamily: 'Georgia, serif',
+              textTransform: 'uppercase',
+              letterSpacing: '0.1em'
+            }}>
+              The Realm Herald
+            </h1>
+            <p className="text-xl text-gray-400 italic">Your Daily Source for RotMG Private Server News</p>
+            <p className="text-sm text-gray-500 mt-2">{page.date}</p>
           </div>
         </div>
       </header>
 
+      {/* Newspaper Content */}
       <main className="container mx-auto px-6 py-12 max-w-6xl">
-        {/* Page Title */}
-        <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-white mb-3" style={{ fontFamily: 'Georgia, serif' }}>
-            The Realm Herald
-          </h1>
-          <p className="text-xl text-gray-400 italic">Your Daily Source for RotMG Private Server News</p>
-        </div>
-
-        {/* Navigation Controls */}
-        <div className="bg-[#2f3136] rounded-xl p-6 mb-8 border border-[#202225]">
-          <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-            {/* Latest Button */}
-            <button
-              onClick={goToLatest}
-              className="bg-[#5865f2] hover:bg-[#4752c4] text-white font-semibold py-3 px-6 rounded-lg transition-colors"
-            >
-              📰 Latest Issue
-            </button>
-
-            {/* Issue Search */}
-            <div className="flex gap-2 items-center">
-              <span className="text-gray-300 font-semibold">Issue #</span>
-              <input
-                type="number"
-                value={searchIssue}
-                onChange={(e) => setSearchIssue(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
-                placeholder="1"
-                className="bg-[#40444b] border border-[#5865f2] text-white px-4 py-2 rounded-lg w-24 text-center"
-                min="1"
-              />
-              <button
-                onClick={handleSearch}
-                className="bg-[#3ba55d] hover:bg-[#2d7d46] text-white font-semibold py-2 px-6 rounded-lg transition-colors"
-              >
-                Go
-              </button>
-            </div>
-
-            {/* Current Issue Info */}
-            <div className="text-center">
-              <p className="text-gray-400 text-sm">Viewing</p>
-              <p className="text-white font-bold text-lg">Issue #{selectedNewspaper.issue}</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Newspaper Display */}
-        <div className="bg-[#2f3136] rounded-xl p-8 mb-8 border border-[#202225]">
-          {/* Navigation Arrows */}
-          <div className="flex justify-between items-center mb-6">
-            <button
-              onClick={goToPrevious}
-              disabled={selectedNewspaper.issue === newspapers[newspapers.length - 1].issue}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-colors ${
-                selectedNewspaper.issue === newspapers[newspapers.length - 1].issue
-                  ? 'bg-[#40444b] text-gray-600 cursor-not-allowed'
-                  : 'bg-[#5865f2] text-white hover:bg-[#4752c4]'
-              }`}
-            >
-              ← Previous
-            </button>
-
-            <div className="text-center">
-              <p className="text-2xl font-bold text-white">{selectedNewspaper.title}</p>
-              <p className="text-gray-400">{selectedNewspaper.date}</p>
-            </div>
-
-            <button
-              onClick={goToNext}
-              disabled={selectedNewspaper.issue === newspapers[0].issue}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-colors ${
-                selectedNewspaper.issue === newspapers[0].issue
-                  ? 'bg-[#40444b] text-gray-600 cursor-not-allowed'
-                  : 'bg-[#5865f2] text-white hover:bg-[#4752c4]'
-              }`}
-            >
-              Next →
-            </button>
-          </div>
-
-          {/* Newspaper Cover/Preview */}
-          <Link 
-            href={selectedNewspaper.fullUrl}
-            className="block hover:opacity-90 transition-opacity"
-          >
-            <div className="relative bg-[#36393f] rounded-lg overflow-hidden border-2 border-[#5865f2] hover:border-[#7289da] transition-colors cursor-pointer">
-              <Image
-                src={selectedNewspaper.coverImage}
-                alt={`Issue ${selectedNewspaper.issue} Cover`}
-                width={1200}
-                height={1600}
-                className="w-full h-auto"
-                unoptimized
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
-                <div className="p-6 w-full">
-                  <p className="text-white text-xl font-bold">Click to Read Full Issue →</p>
-                </div>
-              </div>
-            </div>
-          </Link>
-        </div>
-
-        {/* Contribution Section */}
-        <div className="bg-[#2f3136] rounded-xl p-8 mb-8 border border-[#202225]">
-          <h2 className="text-3xl font-bold text-white mb-4" style={{ fontFamily: 'Georgia, serif' }}>
-            📝 Contribute to The Realm Herald
+        {/* Page Header */}
+        <div className="border-b-4 border-[#5865f2] pb-4 mb-8">
+          <h2 className="text-4xl font-bold text-white" style={{ fontFamily: 'Georgia, serif' }}>
+            {page.headline}
           </h2>
-          <div className="space-y-4 text-gray-300 leading-relaxed">
-            <p className="text-lg">
-              Have news, stories, or insights from the RotMG private server community? We&apos;d love to hear from you!
-            </p>
-            
-            <div className="bg-[#36393f] rounded-lg p-6 border-l-4 border-[#5865f2]">
-              <h3 className="text-xl font-bold text-white mb-3">How to Submit:</h3>
-              <ul className="space-y-2">
-                <li className="flex items-start gap-2">
-                  <span className="text-[#5865f2] font-bold">•</span>
-                  <span>Contact <strong className="text-[#5865f2]">@shangapallia</strong> on Discord</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#5865f2] font-bold">•</span>
-                  <span>Share server updates, event results, or community highlights</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#5865f2] font-bold">•</span>
-                  <span>Submit screenshots, videos, or written articles</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[#5865f2] font-bold">•</span>
-                  <span>Suggest topics you&apos;d like to see covered</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-[#36393f] rounded-lg p-6">
-              <h3 className="text-xl font-bold text-white mb-3">What We&apos;re Looking For:</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                <div className="flex items-center gap-2">
-                  <span className="text-2xl">🎮</span>
-                  <span>Server updates & announcements</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-2xl">🏆</span>
-                  <span>Tournament results & highlights</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-2xl">⚔️</span>
-                  <span>Epic moments & achievements</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-2xl">👥</span>
-                  <span>Community interviews</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-2xl">💡</span>
-                  <span>Tips, guides & strategies</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-2xl">📊</span>
-                  <span>Statistics & analysis</span>
-                </div>
-              </div>
-            </div>
+          <div className="flex items-center justify-between mt-2">
+            <p className="text-gray-400">Page {page.pageNumber} of {totalPages}</p>
+            <p className="text-gray-400">{page.date}</p>
           </div>
         </div>
 
-        {/* Polls Section */}
-        <div className="bg-[#2f3136] rounded-xl p-8 border border-[#202225]">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-3xl font-bold text-white" style={{ fontFamily: 'Georgia, serif' }}>
-              📊 Community Polls
-            </h2>
-            <button
-              onClick={() => setShowActivePollsOnly(!showActivePollsOnly)}
-              className="bg-[#40444b] hover:bg-[#5865f2] text-white px-4 py-2 rounded-lg transition-colors text-sm"
-            >
-              {showActivePollsOnly ? 'Show All Polls' : 'Show Active Only'}
-            </button>
-          </div>
-
-          <div className="space-y-6">
-            {filteredPolls.map((poll) => {
-              const totalVotes = poll.votes.reduce((a, b) => a + b, 0);
-              return (
-                <div 
-                  key={poll.id}
-                  className={`bg-[#36393f] rounded-lg p-6 border-2 ${
-                    poll.isActive ? 'border-[#3ba55d]' : 'border-[#40444b]'
-                  }`}
-                >
-                  <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-xl font-bold text-white">{poll.question}</h3>
-                    <span className={`px-3 py-1 rounded-full text-sm font-semibold ${
-                      poll.isActive ? 'bg-[#3ba55d] text-white' : 'bg-[#40444b] text-gray-400'
-                    }`}>
-                      {poll.isActive ? 'Active' : 'Closed'}
-                    </span>
+        {/* Articles Layout */}
+        <div className="space-y-8">
+          {page.articles.map((article, idx) => (
+            <div key={idx}>
+              {/* Main Article - Full Width */}
+              {article.type === "main" && (
+                <article className="bg-[#2f3136] rounded-lg p-8 border border-[#202225] shadow-lg">
+                  <h3 className="text-3xl font-bold text-white mb-2" style={{ fontFamily: 'Georgia, serif' }}>
+                    {article.title}
+                  </h3>
+                  <p className="text-sm text-[#5865f2] mb-4 italic">{article.author}</p>
+                  
+                  {article.image && (
+                    <div className="mb-6 rounded-lg overflow-hidden">
+                      <Image
+                        src={article.image}
+                        alt={article.title}
+                        width={1200}
+                        height={600}
+                        className="w-full h-auto"
+                      />
+                    </div>
+                  )}
+                  
+                  <div className="text-gray-300 leading-relaxed space-y-4 md:columns-2 md:gap-8" style={{
+                    fontFamily: 'Georgia, serif',
+                    fontSize: '1.05rem',
+                    textAlign: 'justify'
+                  }}>
+                    {article.content.split('\n\n').map((paragraph, pIdx) => (
+                      <p key={pIdx} className="mb-4">{paragraph}</p>
+                    ))}
                   </div>
+                </article>
+              )}
 
-                  <div className="space-y-3">
-                    {poll.options.map((option, idx) => {
-                      const percentage = totalVotes > 0 ? ((poll.votes[idx] / totalVotes) * 100).toFixed(1) : 0;
-                      return (
-                        <div key={idx}>
-                          <div className="flex justify-between text-sm mb-1">
-                            <span className="text-gray-300">{option}</span>
-                            <span className="text-gray-400">{poll.votes[idx]} votes ({percentage}%)</span>
-                          </div>
-                          <div className="w-full bg-[#2f3136] rounded-full h-3 overflow-hidden">
-                            <div
-                              className="bg-[#5865f2] h-full rounded-full transition-all duration-300"
-                              style={{ width: `${percentage}%` }}
-                            />
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-
-                  <p className="text-gray-500 text-sm mt-4">
-                    {poll.isActive ? `Ends: ${poll.endDate}` : `Ended: ${poll.endDate}`}
+              {/* Side Article - Smaller Box */}
+              {article.type === "side" && (
+                <article className="bg-[#2f3136] rounded-lg p-6 border-l-4 border-[#5865f2] shadow-lg">
+                  <h3 className="text-xl font-bold text-white mb-2" style={{ fontFamily: 'Georgia, serif' }}>
+                    {article.title}
+                  </h3>
+                  <p className="text-sm text-[#5865f2] mb-3 italic">{article.author}</p>
+                  <p className="text-gray-300 leading-relaxed" style={{
+                    fontFamily: 'Georgia, serif',
+                    fontSize: '0.95rem'
+                  }}>
+                    {article.content}
                   </p>
-                </div>
-              );
-            })}
+                </article>
+              )}
+
+              {/* Video Embed */}
+              {article.type === "video" && (
+                <article className="bg-[#2f3136] rounded-lg p-6 border border-[#202225] shadow-lg">
+                  <h3 className="text-2xl font-bold text-white mb-4" style={{ fontFamily: 'Georgia, serif' }}>
+                    {article.title}
+                  </h3>
+                  <div className="aspect-video rounded-lg overflow-hidden mb-4">
+                    <iframe
+                      width="100%"
+                      height="100%"
+                      src={article.videoUrl}
+                      title={article.title}
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="w-full h-full"
+                    ></iframe>
+                  </div>
+                  <p className="text-gray-400 text-sm italic">{article.caption}</p>
+                </article>
+              )}
+
+              {/* Image Feature */}
+              {article.type === "image" && (
+                <article className="bg-[#2f3136] rounded-lg p-6 border border-[#202225] shadow-lg">
+                  <h3 className="text-2xl font-bold text-white mb-4" style={{ fontFamily: 'Georgia, serif' }}>
+                    {article.title}
+                  </h3>
+                  <div className="rounded-lg overflow-hidden mb-4">
+                    <Image
+                      src={article.image}
+                      alt={article.title}
+                      width={1200}
+                      height={800}
+                      className="w-full h-auto"
+                    />
+                  </div>
+                  <p className="text-gray-400 text-sm italic">{article.caption}</p>
+                </article>
+              )}
+            </div>
+          ))}
+        </div>
+
+        {/* Navigation Buttons */}
+        <div className="flex justify-between items-center mt-12 pt-8 border-t-2 border-[#2f3136]">
+          <button
+            onClick={goToPreviousPage}
+            disabled={currentPage === 0}
+            className={`flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all ${
+              currentPage === 0
+                ? "bg-[#2f3136] text-gray-600 cursor-not-allowed"
+                : "bg-[#5865f2] text-white hover:bg-[#4752c4] hover:scale-105"
+            }`}
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+            Previous Page
+          </button>
+
+          <div className="text-center">
+            <p className="text-gray-400">
+              Page {currentPage + 1} of {totalPages}
+            </p>
+            <div className="flex gap-2 mt-2">
+              {Array.from({ length: totalPages }).map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentPage(idx)}
+                  className={`w-3 h-3 rounded-full transition-all ${
+                    idx === currentPage ? "bg-[#5865f2] scale-125" : "bg-[#2f3136] hover:bg-[#7289da]"
+                  }`}
+                  aria-label={`Go to page ${idx + 1}`}
+                />
+              ))}
+            </div>
           </div>
 
-          {filteredPolls.length === 0 && (
-            <div className="text-center py-12 text-gray-400">
-              <p className="text-lg">No {showActivePollsOnly ? 'active' : ''} polls available</p>
-            </div>
-          )}
+          <button
+            onClick={goToNextPage}
+            disabled={currentPage === totalPages - 1}
+            className={`flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all ${
+              currentPage === totalPages - 1
+                ? "bg-[#2f3136] text-gray-600 cursor-not-allowed"
+                : "bg-[#5865f2] text-white hover:bg-[#4752c4] hover:scale-105"
+            }`}
+          >
+            Next Page
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
         </div>
       </main>
 
