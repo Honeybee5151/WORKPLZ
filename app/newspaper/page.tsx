@@ -222,7 +222,7 @@ export default function NewspaperMain() {
           </h2>
           <div className="space-y-4 text-gray-300 leading-relaxed">
             <p className="text-lg">
-              Have news, stories, or insights from the RotMG private server community? We'd love to hear from you!
+              Have news, stories, or insights from the RotMG private server community? We&apos;d love to hear from you!
             </p>
             
             <div className="bg-[#36393f] rounded-lg p-6 border-l-4 border-[#5865f2]">
@@ -242,13 +242,13 @@ export default function NewspaperMain() {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-[#5865f2] font-bold">•</span>
-                  <span>Suggest topics you'd like to see covered</span>
+                  <span>Suggest topics you&apos;d like to see covered</span>
                 </li>
               </ul>
             </div>
 
             <div className="bg-[#36393f] rounded-lg p-6">
-              <h3 className="text-xl font-bold text-white mb-3">What We're Looking For:</h3>
+              <h3 className="text-xl font-bold text-white mb-3">What We&apos;re Looking For:</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div className="flex items-center gap-2">
                   <span className="text-2xl">🎮</span>
