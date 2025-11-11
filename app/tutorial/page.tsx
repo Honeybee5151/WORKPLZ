@@ -62,7 +62,7 @@ export default function Tutorial() {
             <div className="mt-8 pt-8 border-t border-[#40444b]">
               <h2 className="text-2xl font-bold text-white mb-4">Sprite Resources</h2>
               <p className="mb-6">
-                If your server turns out big, you could get DMCA&apos;d by the ROTMG-owners, and if so it can be good to use sprites that they do not own. Some of their sprites are open-source, others not. And those you need to replace. Here are some sprites to get you started:
+                If your server turns out big, you could get DMCA&apos;d by the ROTMG-owners, so it can be good to use sprites that they do not own. Some of their sprites are open-source, others not. And those you need to replace. Here are some sprites to get you started:
               </p>
               
               {/* Spritesheet Image */}
