@@ -58,26 +58,6 @@ export default function Tutorial() {
               <span className="text-[#5865f2] font-semibold">@shangapallia</span>
               {" "}for help getting started!
             </p>
-
-            <div className="mt-8 pt-8 border-t border-[#40444b]">
-              <h2 className="text-2xl font-bold text-white mb-4">Quick Links</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <a 
-                  href="https://discord.gg/g8stj7Vdw3" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="bg-[#5865f2] hover:bg-[#4752c4] text-white font-semibold py-4 px-6 rounded-lg transition-colors text-center"
-                >
-                  Join Realmdex Discord
-                </a>
-                <Link 
-                  href="/"
-                  className="bg-[#36393f] hover:bg-[#202225] text-white font-semibold py-4 px-6 rounded-lg transition-colors border border-[#202225] text-center"
-                >
-                  Back to Server Hub
-                </Link>
-              </div>
-            </div>
           </div>
         </div>
       </main>
