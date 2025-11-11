@@ -8,7 +8,7 @@ const servers = [
     name: "Evershade",
     image: "/serverIcons/evershadeImage.png",
     players: Math.floor(Math.random() * 500) + 50,
-    description: "Evershade is a popular RotMG private server with custom features and an active community. Experience unique dungeons and items!Evershade is a popular RotMG private server with custom features and an active community. Experience unique dungeons and items!Evershade is a popular RotMG private server with custom features and an active community. Experience unique dungeons and items!",
+    description: "Evershade is a popular RotMG private server with custom features and an active community. Experience unique dungeons and items!",
     website: "https://evershade.example.com",
   },
   {
