@@ -79,9 +79,9 @@ export default function NewspaperMain() {
       <main className="container mx-auto px-6 py-12 max-w-6xl">
         <div className="text-center mb-12">
           <h1 className="text-5xl font-bold text-white mb-3" style={{ fontFamily: 'Georgia, serif' }}>
-            The Realm Herald
+            The Realmder
           </h1>
-          <p className="text-xl text-gray-400 italic">Your Daily Source for RotMG Private Server News</p>
+          <p className="text-xl text-gray-400 italic">Your monthly source of rotmg-pserver news</p>
         </div>
 
         <div className="bg-[#2f3136] rounded-xl p-6 mb-8 border border-[#202225]">
@@ -136,7 +136,7 @@ export default function NewspaperMain() {
 
         <div className="bg-[#2f3136] rounded-xl p-8 mb-8 border border-[#202225]">
           <h2 className="text-3xl font-bold text-white mb-4" style={{ fontFamily: 'Georgia, serif' }}>
-            📝 Contribute to The Realm Herald
+            📝 Contribute to The Realmder
           </h2>
           <div className="space-y-4 text-gray-300 leading-relaxed">
             <p className="text-lg">Have news, stories, or insights from the RotMG private server community? We&apos;d love to hear from you!</p>
