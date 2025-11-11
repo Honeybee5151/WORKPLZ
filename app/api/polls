@@ -1,1 +1,144 @@
+import { NextRequest, NextResponse } from 'next/server';
 
+// In-memory storage for polls (replace with database in production)
+// Structure: { pollId: { votes: [count, count, count], voters: Set<string> } }
+const pollData: { 
+  [key: number]: { 
+    votes: number[]; 
+    voters: Set<string>;
+  } 
+} = {
+  1: {
+    votes: [245, 189, 312, 156],
+    voters: new Set()
+  },
+  2: {
+    votes: [180, 145, 98, 167, 123],
+    voters: new Set()
+  }
+};
+
+// GET: Retrieve poll data
+export async function GET(request: NextRequest) {
+  const { searchParams } = new URL(request.url);
+  const pollId = searchParams.get('pollId');
+
+  if (pollId) {
+    const id = parseInt(pollId);
+    const poll = pollData[id];
+    
+    if (!poll) {
+      return NextResponse.json(
+        { error: 'Poll not found' },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json({
+      pollId: id,
+      votes: poll.votes,
+      totalVoters: poll.voters.size
+    });
+  }
+
+  // Return all polls
+  const allPolls = Object.entries(pollData).map(([id, data]) => ({
+    pollId: parseInt(id),
+    votes: data.votes,
+    totalVoters: data.voters.size
+  }));
+
+  return NextResponse.json({ polls: allPolls });
+}
+
+// POST: Submit a vote
+export async function POST(request: NextRequest) {
+  try {
+    const body = await request.json();
+    const { pollId, optionIndex, voterId } = body;
+
+    // Validation
+    if (pollId === undefined || optionIndex === undefined || !voterId) {
+      return NextResponse.json(
+        { error: 'Missing required fields: pollId, optionIndex, voterId' },
+        { status: 400 }
+      );
+    }
+
+    const poll = pollData[pollId];
+    
+    if (!poll) {
+      return NextResponse.json(
+        { error: 'Poll not found' },
+        { status: 404 }
+      );
+    }
+
+    // Check if option index is valid
+    if (optionIndex < 0 || optionIndex >= poll.votes.length) {
+      return NextResponse.json(
+        { error: 'Invalid option index' },
+        { status: 400 }
+      );
+    }
+
+    // Check if user already voted
+    if (poll.voters.has(voterId)) {
+      return NextResponse.json(
+        { error: 'You have already voted in this poll' },
+        { status: 403 }
+      );
+    }
+
+    // Record the vote
+    poll.votes[optionIndex]++;
+    poll.voters.add(voterId);
+
+    return NextResponse.json({
+      success: true,
+      pollId,
+      votes: poll.votes,
+      message: 'Vote recorded successfully'
+    });
+
+  } catch (error) {
+    console.error('Error processing vote:', error);
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    );
+  }
+}
+
+// DELETE: Reset a poll (admin only - add authentication in production)
+export async function DELETE(request: NextRequest) {
+  const { searchParams } = new URL(request.url);
+  const pollId = searchParams.get('pollId');
+
+  if (!pollId) {
+    return NextResponse.json(
+      { error: 'Missing pollId' },
+      { status: 400 }
+    );
+  }
+
+  const id = parseInt(pollId);
+  const poll = pollData[id];
+
+  if (!poll) {
+    return NextResponse.json(
+      { error: 'Poll not found' },
+      { status: 404 }
+    );
+  }
+
+  // Reset votes but keep the array length
+  poll.votes = poll.votes.map(() => 0);
+  poll.voters.clear();
+
+  return NextResponse.json({
+    success: true,
+    message: 'Poll reset successfully',
+    pollId: id
+  });
+}
