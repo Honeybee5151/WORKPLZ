@@ -155,8 +155,8 @@ export default function NewspaperPage() {
       <header className="bg-[#202225] border-b border-[#2f3136] shadow-lg">
         <div className="bg-gradient-to-r from-[#5865f2] to-[#7289da] h-2"></div>
         <div className="container mx-auto px-6 py-8">
-          <Link href="/" className="inline-block mb-4 text-[#5865f2] hover:text-[#7289da] transition-colors">
-            ← Back to Hub
+          <Link href="/newspaper" className="inline-block mb-4 text-[#5865f2] hover:text-[#7289da] transition-colors">
+              ← Back to Newspaper Archive
           </Link>
           <div className="text-center">
             <h1 className="text-5xl sm:text-6xl font-bold text-white tracking-tight mb-2" style={{
