@@ -1,12 +1,11 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 
 const servers = [
   {
     name: "Evershade",
-    image: "/serverIcons/evershadeImage.png",
+    image: "/serverIcons/evershadeImage",
     players: Math.floor(Math.random() * 500) + 50,
     description: "Evershade is a popular RotMG private server with custom features and an active community. Experience unique dungeons and items!",
     website: "https://evershade.example.com",
@@ -58,12 +57,8 @@ export default function Home() {
       if (!isDragging.current && !hasInteracted.current && scrollRef.current) {
         setOffset((prev) => {
           const newOffset = prev - speed;
-          const singleSetWidth = scrollRef.current!.scrollWidth / 2;
-          // Use modulo to create seamless infinite loop
-          if (newOffset <= -singleSetWidth) {
-            return 0;
-          }
-          return newOffset;
+          const width = scrollRef.current!.scrollWidth / 2;
+          return newOffset <= -width ? 0 : newOffset;
         });
       }
       anim = requestAnimationFrame(loop);
@@ -82,25 +77,7 @@ export default function Home() {
   const handlePointerMove = (clientX: number) => {
     if (!isDragging.current) return;
     const dx = clientX - startX.current;
-    const newOffset = scrollStart.current + dx;
-    
-    // Wrap offset for infinite scrolling when dragging
-    if (scrollRef.current) {
-      const singleSetWidth = scrollRef.current.scrollWidth / 2;
-      if (newOffset <= -singleSetWidth) {
-        setOffset(0);
-        scrollStart.current = 0;
-        startX.current = clientX;
-      } else if (newOffset >= 0) {
-        setOffset(-singleSetWidth);
-        scrollStart.current = -singleSetWidth;
-        startX.current = clientX;
-      } else {
-        setOffset(newOffset);
-      }
-    } else {
-      setOffset(newOffset);
-    }
+    setOffset(scrollStart.current + dx);
   };
 
   const handlePointerEnd = () => {
@@ -268,14 +245,17 @@ export default function Home() {
                             : 'border-[#202225] hover:border-[#7289da]'
                         }`}
                       >
-                        <Image
+                        <img
                           src={server.image}
                           alt={server.name}
                           width={120}
                           height={120}
-                          unoptimized
-                          draggable={false}
+                          draggable="false"
                           className="rounded-full bg-[#36393f] object-cover select-none"
+                          onError={(e) => {
+                            console.error(`Failed to load image: ${server.image}`);
+                            e.currentTarget.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="120" height="120"%3E%3Crect fill="%2336393f" width="120" height="120"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="white" font-size="48"%3E?%3C/text%3E%3C/svg%3E';
+                          }}
                         />
                       </div>
 
@@ -294,22 +274,20 @@ export default function Home() {
             </div>
 
             {/* Server Info Display */}
-            <div className="max-w-5xl mx-auto bg-[#36393f] rounded-xl p-12 border border-[#202225] shadow-xl min-h-[400px]">
+            <div className="max-w-4xl mx-auto bg-[#36393f] rounded-xl p-10 border border-[#202225] shadow-xl min-h-[300px]">
               {selectedServer !== null ? (
-                <div className="space-y-8">
+                <div className="space-y-6">
                   <div className="flex items-center justify-between flex-wrap gap-4">
-                    <h3 className="text-4xl font-bold text-white">
+                    <h3 className="text-3xl font-bold text-white">
                       {servers[selectedServer].name}
                     </h3>
-                    <span className="px-6 py-3 bg-[#3ba55d] text-white rounded-lg font-semibold text-xl">
+                    <span className="px-5 py-2 bg-[#3ba55d] text-white rounded-lg font-semibold text-lg">
                       {servers[selectedServer].players} Players Online
                     </span>
                   </div>
-                  <div className="text-gray-300 leading-relaxed text-lg space-y-4 max-h-[200px] overflow-y-auto">
-                    {servers[selectedServer].description.split('\n\n').map((paragraph, idx) => (
-                      <p key={idx}>{paragraph}</p>
-                    ))}
-                  </div>
+                  <p className="text-gray-300 leading-relaxed text-lg">
+                    {servers[selectedServer].description}
+                  </p>
                   <div className="flex gap-4 pt-6">
                     <button className="flex-1 bg-[#5865f2] hover:bg-[#4752c4] text-white font-semibold py-4 px-8 rounded-lg transition-colors text-lg">
                       Join Server
