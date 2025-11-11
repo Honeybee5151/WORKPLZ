@@ -11,8 +11,8 @@ const servers = [
     website: "https://evershade.example.com",
   },
   {
-    name: "Server 2",
-    image: "/serverIcons/server2",
+    name: "Tidan's Realms",
+    image: "/serverIcons/tidanRealmsIcon.png",
     players: "N/A",
     description: "This is a popular RotMG private server with custom features and an active community.",
     website: "https://server2.example.com",
