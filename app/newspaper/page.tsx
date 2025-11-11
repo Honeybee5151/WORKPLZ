@@ -3,7 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-// Sample newspaper data - replace with your actual newspaperS
+// Sample newspaper data - replace with your actual newspapers
 const newspapers = [
   {
     issue: 1,
@@ -122,14 +122,6 @@ export default function NewspaperMain() {
         {/* Navigation Controls */}
         <div className="bg-[#2f3136] rounded-xl p-6 mb-8 border border-[#202225]">
           <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-            {/* Latest Button */}
-            <button
-              onClick={goToLatest}
-              className="bg-[#5865f2] hover:bg-[#4752c4] text-white font-semibold py-3 px-6 rounded-lg transition-colors"
-            >
-              📰 Latest Issue
-            </button>
-
             {/* Issue Search */}
             <div className="flex gap-2 items-center">
               <span className="text-gray-300 font-semibold">Issue #</span>
