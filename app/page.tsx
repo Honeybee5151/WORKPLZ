@@ -18,8 +18,8 @@ const servers = [
     website: "https://server2.example.com",
   },
   {
-    name: "Server 3",
-    image: "/serverIcons/server3",
+    name: "Forgotten Pantheon",
+    image: "/serverIcons/forgottenPantheonIcon.png",
     players: "N/A",
     description: "This is a popular RotMG private server with custom features and an active community.",
     website: "https://server3.example.com",
