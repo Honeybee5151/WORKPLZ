@@ -75,12 +75,8 @@ export default function Home() {
       }
     };
 
-    // Fetch initially
     fetchPlayerCounts();
-
-    // Refresh every 30 seconds
     const interval = setInterval(fetchPlayerCounts, 30000);
-
     return () => clearInterval(interval);
   }, []);
 
@@ -158,7 +154,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[#36393f] text-gray-100 flex flex-col">
-      {/* Header with pixel art banner */}
       <header className="bg-[#202225] border-b border-[#2f3136] shadow-lg">
         <div className="bg-gradient-to-r from-[#5865f2] to-[#7289da] h-2"></div>
         <div className="container mx-auto px-6 py-6">
@@ -168,25 +163,16 @@ export default function Home() {
               src="/banner.png" 
               alt="RotMG Hub Banner"
               className="rounded-xl shadow-lg"
-              style={{
-                imageRendering: 'pixelated',
-                maxWidth: '1200px',
-                width: '100%',
-                height: 'auto'
-              }}
+              style={{ imageRendering: 'pixelated', maxWidth: '1200px', width: '100%', height: 'auto' }}
             />
           </div>
         </div>
       </header>
 
       <main className="flex-1 flex flex-col">
-        {/* Top Half - Tutorial and Newspaper */}
         <div className="container mx-auto px-6 py-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <Link
-              href="/tutorial"
-              className="group bg-[#2f3136] hover:bg-[#36393f] rounded-xl p-8 transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 border border-[#202225] hover:border-[#5865f2]"
-            >
+            <Link href="/tutorial" className="group bg-[#2f3136] hover:bg-[#36393f] rounded-xl p-8 transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 border border-[#202225] hover:border-[#5865f2]">
               <div className="flex flex-col items-center gap-4">
                 <div className="w-32 h-32 bg-[#5865f2] rounded-lg flex items-center justify-center group-hover:bg-[#4752c4] transition-colors">
                   <svg className="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -198,10 +184,7 @@ export default function Home() {
               </div>
             </Link>
 
-            <Link
-              href="/newspaper"
-              className="group bg-[#2f3136] hover:bg-[#36393f] rounded-xl p-8 transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 border border-[#202225] hover:border-[#5865f2]"
-            >
+            <Link href="/newspaper" className="group bg-[#2f3136] hover:bg-[#36393f] rounded-xl p-8 transition-all duration-300 shadow-lg hover:shadow-2xl hover:scale-105 border border-[#202225] hover:border-[#5865f2]">
               <div className="flex flex-col items-center gap-4">
                 <div className="w-32 h-32 bg-[#7289da] rounded-lg flex items-center justify-center group-hover:bg-[#677bc4] transition-colors">
                   <svg className="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -215,7 +198,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Bottom Half - Server Carousel */}
         <div className="bg-[#2f3136] flex-1 py-12">
           <div className="container mx-auto px-6">
             <h2 className="text-3xl font-bold text-center mb-8 text-white">Browse Private Servers</h2>
@@ -241,7 +223,7 @@ export default function Home() {
                 className="flex py-8"
                 style={{
                   transform: `translateX(${offset}px)`,
-                  transition: isDragging.current ? 'none' : 'transform 0.1s ease-out',
+                  willChange: 'transform',
                 }}
               >
                 {servers.concat(servers).map((server, i) => {
