@@ -238,7 +238,7 @@ export default function Home() {
                       </div>
 
                       <div
-                        className={`relative rounded-full border-8 transition-all duration-300 ${
+                        className={`relative rounded-full border-8 transition-all duration-300 w-60 h-60 ${
                           isSelected
                             ? 'border-[#5865f2] shadow-lg shadow-[#5865f2]/50'
                             : 'border-[#202225] hover:border-[#7289da]'
@@ -251,7 +251,7 @@ export default function Home() {
                           height={240}
                           unoptimized
                           draggable={false}
-                          className="rounded-full bg-[#36393f] object-cover select-none"
+                          className="rounded-full bg-[#36393f] object-cover select-none w-full h-full"
                         />
                       </div>
 
