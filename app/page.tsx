@@ -14,7 +14,7 @@ const servers = [
   },
   {
     id: "tsrealms",
-    name: "T's Realms",
+    name: "Tidan's Realms",
     image: "/serverIcons/tidanRealmsIcon.png",
     description: "Tidan's realms is one of the most unique private servers out there, yet it is made by one man, the man--the legend: Tidan. It will have a quest-book system, a revamped realm, expeditions and much more. It is in paid testing as of right now.",
     website: "https://server2.example.com",
@@ -22,7 +22,7 @@ const servers = [
   },
   {
     id: "fp",
-    name: "FP",
+    name: "Forgotten Pantheon",
     image: "/serverIcons/forgottenPantheonIcon.png",
     description: "This is a popular RotMG private server with custom features and an active community.",
     website: "https://server3.example.com",
@@ -46,7 +46,7 @@ const servers = [
   },
   {
     id: "Ica's Realm",
-    name: "Ica Realm",
+    name: "Ica's Realm",
     image: "/serverIcons/IcasRealmIcon.png",
     description: "Ica's Realm is in a way the modern Nilly's Realm, a tribute, an expansion. There is an item recycling system, NPE-mode, new classes and much more. If you were a nillys-fan, but want a twist to the nostalgia, this is definitely it. ",
     website: "https://halocelsius.com/Assets/IcaStore.html",
