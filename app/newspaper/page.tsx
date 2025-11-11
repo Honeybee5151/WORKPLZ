@@ -86,6 +86,14 @@ export default function NewspaperMain() {
 
         <div className="bg-[#2f3136] rounded-xl p-6 mb-8 border border-[#202225]">
           <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
+            <div className="flex gap-2">
+              <button onClick={goToPrevious} disabled={selectedNewspaper.issue === newspapers[newspapers.length - 1].issue} className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-colors ${selectedNewspaper.issue === newspapers[newspapers.length - 1].issue ? 'bg-[#40444b] text-gray-600 cursor-not-allowed' : 'bg-[#5865f2] text-white hover:bg-[#4752c4]'}`}>
+                ← Previous
+              </button>
+              <button onClick={goToNext} disabled={selectedNewspaper.issue === newspapers[0].issue} className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-colors ${selectedNewspaper.issue === newspapers[0].issue ? 'bg-[#40444b] text-gray-600 cursor-not-allowed' : 'bg-[#5865f2] text-white hover:bg-[#4752c4]'}`}>
+                Next →
+              </button>
+            </div>
             <div className="flex gap-2 items-center">
               <span className="text-gray-300 font-semibold">Issue #</span>
               <input
@@ -109,16 +117,6 @@ export default function NewspaperMain() {
         </div>
 
         <div className="bg-[#2f3136] rounded-xl p-8 mb-8 border border-[#202225]">
-          <div className="flex justify-between items-center mb-6">
-            <button onClick={goToPrevious} disabled={selectedNewspaper.issue === newspapers[newspapers.length - 1].issue} className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-colors ${selectedNewspaper.issue === newspapers[newspapers.length - 1].issue ? 'bg-[#40444b] text-gray-600 cursor-not-allowed' : 'bg-[#5865f2] text-white hover:bg-[#4752c4]'}`}>
-              ← Previous
-            </button>
-            <button onClick={goToNext} disabled={selectedNewspaper.issue === newspapers[0].issue} className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-colors ${selectedNewspaper.issue === newspapers[0].issue ? 'bg-[#40444b] text-gray-600 cursor-not-allowed' : 'bg-[#5865f2] text-white hover:bg-[#4752c4]'}`}>
-              Next →
-            </button>
-          </div>
-
-          <Link href={selectedNewspaper.fullUrl} className="block hover:opacity-90 transition-opacity">
             <div className="relative bg-[#36393f] rounded-lg overflow-hidden border-2 border-[#5865f2] hover:border-[#7289da] transition-colors cursor-pointer">
               <Image src={selectedNewspaper.coverImage} alt={`Issue ${selectedNewspaper.issue} Cover`} width={1200} height={1600} className="w-full h-auto" unoptimized />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
