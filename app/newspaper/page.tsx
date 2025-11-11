@@ -342,7 +342,7 @@ export default function NewspaperMain() {
 
       {/* Footer */}
       <footer className="bg-[#202225] border-t border-[#2f3136] py-6 text-center text-gray-400 mt-12">
-        <p>© 2025 ROTMGPSd</p>
+        <p>© 2025 ROTMGPS</p>
       </footer>
     </div>
   );
