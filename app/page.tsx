@@ -109,27 +109,10 @@ export default function Home() {
   };
 
   const handlePointerMove = (clientX: number) => {
-    if (!isDragging.current) return;
-    const dx = clientX - startX.current;
-    const newOffset = scrollStart.current + dx;
-    
-    if (scrollRef.current) {
-      const singleSetWidth = scrollRef.current.scrollWidth / 2;
-      if (newOffset <= -singleSetWidth) {
-        setOffset(0);
-        scrollStart.current = 0;
-        startX.current = clientX;
-      } else if (newOffset >= 0) {
-        setOffset(-singleSetWidth);
-        scrollStart.current = -singleSetWidth;
-        startX.current = clientX;
-      } else {
-        setOffset(newOffset);
-      }
-    } else {
-      setOffset(newOffset);
-    }
-  };
+  if (!isDragging.current) return;
+  const dx = clientX - startX.current;
+  setOffset(scrollStart.current + dx);
+};
 
   const handlePointerEnd = () => {
     isDragging.current = false;
