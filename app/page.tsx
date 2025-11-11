@@ -32,7 +32,7 @@ const servers = [
     website: "https://server4.example.com",
   },
   {
-    name: "Domain of Magica",
+    name: "DOM",
     image: "/serverIcons/DOMIcon.png",
     players: "N/A",
     description: "This is a popular RotMG private server with custom features and an active community.",
