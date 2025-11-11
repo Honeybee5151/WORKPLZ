@@ -7,7 +7,7 @@ const servers = [
   {
     id: "evershade",
     name: "Evershade",
-    image: "/serverIcons/evershadeImage.png",
+    image: "/serverIcons/evershadeImage",
     description: "Evershade is a popular RotMG private server with custom features and an active community. Experience unique dungeons and items!",
     website: "https://evershade.example.com",
     discord: "https://discord.gg/evershade",
@@ -65,7 +65,7 @@ export default function Home() {
         
         if (data.servers) {
           const counts: { [key: string]: number | string } = {};
-          data.servers.forEach((server: any) => {
+          data.servers.forEach((server: { serverId: string; playerCount: number; isStale: boolean }) => {
             counts[server.serverId] = server.isStale ? 'Offline' : server.playerCount;
           });
           setPlayerCounts(counts);
@@ -163,6 +163,7 @@ export default function Home() {
         <div className="bg-gradient-to-r from-[#5865f2] to-[#7289da] h-2"></div>
         <div className="container mx-auto px-6 py-6">
           <div className="flex justify-center">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img 
               src="/banner.png" 
               alt="RotMG Hub Banner"
