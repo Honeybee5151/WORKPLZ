@@ -31,9 +31,6 @@ export default function Tutorial() {
       {/* Main Content */}
       <main className="container mx-auto px-6 py-12 max-w-4xl">
         <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-white mb-3">
-            Getting Started
-          </h1>
           <p className="text-xl text-gray-400">Learn how to create and contribute to private servers</p>
         </div>
 
