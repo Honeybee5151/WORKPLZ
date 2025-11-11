@@ -33,8 +33,8 @@ const servers = [
     name: "Valor",
     image: "/serverIcons/valorIcon.png",
     description: "This is a popular RotMG private server with custom features and an active community.",
-    website: "https://server4.example.com",
-    discord: "https://discord.gg/valor",
+    website: "https://valorserver.com/",
+    discord: "https://discord.gg/valormc",
   },
   {
     id: "dom",
