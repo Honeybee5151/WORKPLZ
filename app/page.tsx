@@ -7,8 +7,9 @@ const servers = [
     name: "Evershade",
     image: "/serverIcons/evershadeImage",
     players: "N/A",
-    description: "Evershade is a popular RotMG private server with custom features and an active community. Experience unique dungeons and items!y. Experience unique dungeons and itemsy. Experience unique dungeons and itemsy. Experience unique dungeons and itemsy. Experience unique dungeons and items",
+    description: "Evershade is a popular RotMG private server with custom features and an active community. Experience unique dungeons and items!",
     website: "https://evershade.example.com",
+    discord: "https://discord.gg/evershade", // Add Discord invite link here
   },
   {
     name: "T's Realms",
@@ -16,6 +17,7 @@ const servers = [
     players: "N/A",
     description: "This is a popular RotMG private server with custom features and an active community.",
     website: "https://server2.example.com",
+    discord: "https://discord.gg/tidanrealms", // Add Discord invite link here
   },
   {
     name: "FP",
@@ -23,6 +25,7 @@ const servers = [
     players: "N/A",
     description: "This is a popular RotMG private server with custom features and an active community.",
     website: "https://server3.example.com",
+    discord: "https://discord.gg/forgottenpantheon", // Add Discord invite link here
   },
   {
     name: "Valor",
@@ -30,6 +33,7 @@ const servers = [
     players: "N/A",
     description: "This is a popular RotMG private server with custom features and an active community.",
     website: "https://server4.example.com",
+    discord: "https://discord.gg/valor", // Add Discord invite link here
   },
   {
     name: "DOM",
@@ -37,6 +41,7 @@ const servers = [
     players: "N/A",
     description: "This is a popular RotMG private server with custom features and an active community.",
     website: "https://server5.example.com",
+    discord: "https://discord.gg/dom", // Add Discord invite link here
   },
 ];
 
@@ -289,12 +294,25 @@ export default function Home() {
                     {servers[selectedServer].description}
                   </p>
                   <div className="flex gap-4 pt-6">
-                    <button className="flex-1 bg-[#5865f2] hover:bg-[#4752c4] text-white font-semibold py-4 px-8 rounded-lg transition-colors text-lg">
-                      Join Server
-                    </button>
-                    <button className="flex-1 bg-[#2f3136] hover:bg-[#202225] text-white font-semibold py-4 px-8 rounded-lg transition-colors border border-[#202225] text-lg">
+                    {/* Join Server Button - Links to Discord */}
+                    
+                      href={servers[selectedServer].discord}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 bg-[#5865f2] hover:bg-[#4752c4] text-white font-semibold py-4 px-8 rounded-lg transition-colors text-lg text-center"
+                    >
+                      Join Discord
+                    </a>
+                    
+                    {/* Visit Website Button */}
+                    
+                      href={servers[selectedServer].website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 bg-[#2f3136] hover:bg-[#202225] text-white font-semibold py-4 px-8 rounded-lg transition-colors border border-[#202225] text-lg text-center"
+                    >
                       Visit Website
-                    </button>
+                    </a>
                   </div>
                 </div>
               ) : (
