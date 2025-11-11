@@ -1,0 +1,91 @@
+"use client";
+import Link from "next/link";
+
+export default function Tutorial() {
+  return (
+    <div className="min-h-screen bg-[#36393f] text-gray-100">
+      {/* Header with banner */}
+      <header className="bg-[#202225] border-b border-[#2f3136] shadow-lg">
+        <div className="bg-gradient-to-r from-[#5865f2] to-[#7289da] h-2"></div>
+        <div className="container mx-auto px-6 py-6">
+          <Link href="/" className="inline-block mb-4 text-[#5865f2] hover:text-[#7289da] transition-colors">
+            ← Back to Hub
+          </Link>
+          <div className="flex justify-center">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img 
+              src="/banner.png" 
+              alt="RotMG Hub Banner"
+              className="rounded-xl shadow-lg"
+              style={{
+                imageRendering: 'pixelated',
+                maxWidth: '1200px',
+                width: '100%',
+                height: 'auto'
+              }}
+            />
+          </div>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="container mx-auto px-6 py-12 max-w-4xl">
+        <div className="text-center mb-12">
+          <h1 className="text-5xl font-bold text-white mb-3">
+            Getting Started
+          </h1>
+          <p className="text-xl text-gray-400">Learn how to create and contribute to private servers</p>
+        </div>
+
+        {/* Content Card */}
+        <div className="bg-[#2f3136] rounded-xl p-12 border border-[#202225] shadow-xl">
+          <div className="space-y-6 text-gray-300 leading-relaxed text-lg">
+            <p>
+              So you want to create a pserver or contribute to them via programming? The{" "}
+              <a 
+                href="https://discord.gg/g8stj7Vdw3" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-[#5865f2] hover:text-[#7289da] font-semibold underline transition-colors"
+              >
+                realmdex community
+              </a>
+              {" "}is a great resource for that.
+            </p>
+
+            <p>
+              You can also contact me on Discord{" "}
+              <span className="text-[#5865f2] font-semibold">@shangapallia</span>
+              {" "}for help getting started!
+            </p>
+
+            <div className="mt-8 pt-8 border-t border-[#40444b]">
+              <h2 className="text-2xl font-bold text-white mb-4">Quick Links</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <a 
+                  href="https://discord.gg/g8stj7Vdw3" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="bg-[#5865f2] hover:bg-[#4752c4] text-white font-semibold py-4 px-6 rounded-lg transition-colors text-center"
+                >
+                  Join Realmdex Discord
+                </a>
+                <Link 
+                  href="/"
+                  className="bg-[#36393f] hover:bg-[#202225] text-white font-semibold py-4 px-6 rounded-lg transition-colors border border-[#202225] text-center"
+                >
+                  Back to Server Hub
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-[#202225] border-t border-[#2f3136] py-6 text-center text-gray-400 mt-12">
+        <p>© 2025 ROTMGPS</p>
+      </footer>
+    </div>
+  );
+}
