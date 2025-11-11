@@ -6,7 +6,7 @@ import Image from "next/image";
 const servers = [
   {
     name: "Evershade",
-    image: "/serverIcons/evershadeImage.png",
+    image: "/serverIcons/evershadeImage",
     players: "N/A",
     description: "Evershade is a popular RotMG private server with custom features and an active community. Experience unique dungeons and items!",
     website: "https://evershade.example.com",
