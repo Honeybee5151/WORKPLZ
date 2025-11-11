@@ -2,14 +2,24 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 
-const servers = [
+// Define the Server type
+interface Server {
+  name: string;
+  image: string;
+  players: string | number;
+  description: string;
+  website: string;
+  discord: string;
+}
+
+const servers: Server[] = [
   {
     name: "Evershade",
     image: "/serverIcons/evershadeImage",
     players: "N/A",
     description: "Evershade is a popular RotMG private server with custom features and an active community. Experience unique dungeons and items!",
     website: "https://evershade.example.com",
-    discord: "https://discord.gg/evershade", // Add Discord invite link here
+    discord: "https://discord.gg/evershade",
   },
   {
     name: "T's Realms",
@@ -17,7 +27,7 @@ const servers = [
     players: "N/A",
     description: "This is a popular RotMG private server with custom features and an active community.",
     website: "https://server2.example.com",
-    discord: "https://discord.gg/tidanrealms", // Add Discord invite link here
+    discord: "https://discord.gg/tidanrealms",
   },
   {
     name: "FP",
@@ -25,7 +35,7 @@ const servers = [
     players: "N/A",
     description: "This is a popular RotMG private server with custom features and an active community.",
     website: "https://server3.example.com",
-    discord: "https://discord.gg/forgottenpantheon", // Add Discord invite link here
+    discord: "https://discord.gg/forgottenpantheon",
   },
   {
     name: "Valor",
@@ -33,7 +43,7 @@ const servers = [
     players: "N/A",
     description: "This is a popular RotMG private server with custom features and an active community.",
     website: "https://server4.example.com",
-    discord: "https://discord.gg/valor", // Add Discord invite link here
+    discord: "https://discord.gg/valor",
   },
   {
     name: "DOM",
@@ -41,7 +51,7 @@ const servers = [
     players: "N/A",
     description: "This is a popular RotMG private server with custom features and an active community.",
     website: "https://server5.example.com",
-    discord: "https://discord.gg/dom", // Add Discord invite link here
+    discord: "https://discord.gg/dom",
   },
 ];
 
@@ -259,7 +269,8 @@ export default function Home() {
                           className="rounded-full bg-[#36393f] object-cover select-none"
                           onError={(e) => {
                             console.error(`Failed to load image: ${server.image}`);
-                            e.currentTarget.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="120" height="120"%3E%3Crect fill="%2336393f" width="120" height="120"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="white" font-size="48"%3E?%3C/text%3E%3C/svg%3E';
+                            const target = e.currentTarget as HTMLImageElement;
+                            target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="120" height="120"%3E%3Crect fill="%2336393f" width="120" height="120"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="white" font-size="48"%3E?%3C/text%3E%3C/svg%3E';
                           }}
                         />
                       </div>
