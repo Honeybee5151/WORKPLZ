@@ -64,7 +64,7 @@ export default function Home() {
   const scrollStart = useRef(0);
   const hasInteracted = useRef(false);
 
-  // Fetch player counts
+  // aFetch player counts
   useEffect(() => {
     const fetchPlayerCounts = async () => {
       try {
