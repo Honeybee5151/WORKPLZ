@@ -58,6 +58,24 @@ export default function Tutorial() {
               <span className="text-[#5865f2] font-semibold">@shangapallia</span>
               {" "}for help getting started!
             </p>
+
+            <div className="mt-8 pt-8 border-t border-[#40444b]">
+              <h2 className="text-2xl font-bold text-white mb-4">Sprite Resources</h2>
+              <p className="mb-6">
+                If your server turns out big, you could get DMCA&apos;d by the ROTMG-owners, and if so it can be good to use sprites that they do not own. Some of their sprites are open-source, others not. And those you need to replace. Here are some sprites to get you started:
+              </p>
+              
+              {/* Spritesheet Image */}
+              <div className="bg-[#36393f] rounded-lg p-6 border border-[#202225]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img 
+                  src="/spritesheet.png" 
+                  alt="Custom Sprites"
+                  className="w-full h-auto rounded"
+                  style={{ imageRendering: 'pixelated' }}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </main>
