@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-// In-memory storage for polls (replace with database in production)
+// aIn-memory storage for polls (replace with database in production)
 // Structure: { pollId: { votes: [count, count, count], voters: Set<string> } }
 const pollData: { 
   [key: number]: { 
