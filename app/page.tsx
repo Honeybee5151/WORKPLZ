@@ -11,14 +11,14 @@ const servers = [
     website: "https://evershade.example.com",
   },
   {
-    name: "Tidan's Realms",
+    name: "T's Realms",
     image: "/serverIcons/tidanRealmsIcon.png",
     players: "N/A",
     description: "This is a popular RotMG private server with custom features and an active community.",
     website: "https://server2.example.com",
   },
   {
-    name: "Forgotten Pantheon",
+    name: "FP",
     image: "/serverIcons/forgottenPantheonIcon.png",
     players: "N/A",
     description: "This is a popular RotMG private server with custom features and an active community.",
@@ -26,14 +26,14 @@ const servers = [
   },
   {
     name: "Valor",
-    image: "/serverIcons/valorIcon",
+    image: "/serverIcons/valorIcon.png",
     players: "N/A",
     description: "This is a popular RotMG private server with custom features and an active community.",
     website: "https://server4.example.com",
   },
   {
     name: "Domain of Magica",
-    image: "/serverIcons/DOMIcon",
+    image: "/serverIcons/DOMIcon.png",
     players: "N/A",
     description: "This is a popular RotMG private server with custom features and an active community.",
     website: "https://server5.example.com",
