@@ -238,7 +238,7 @@ export default function Home() {
                       </div>
 
                       <div
-                        className={`relative rounded-full border-8 transition-all duration-300 w-60 h-60 ${
+                        className={`relative rounded-full border-4 transition-all duration-300 w-40 h-40 ${
                           isSelected
                             ? 'border-[#5865f2] shadow-lg shadow-[#5865f2]/50'
                             : 'border-[#202225] hover:border-[#7289da]'
