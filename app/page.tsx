@@ -44,6 +44,14 @@ const servers = [
     website: "https://server5.example.com",
     discord: "https://discord.gg/dom",
   },
+  {
+    id: "Ica's Realm",
+    name: "Ica's Realm",
+    image: "/serverIcons/icasRealmIcon.png",
+    description: "Ica's Realm is in a way the modern Nilly's Realm, a tribute, an expansion. There is an item recycling system, NPE-mode, new classes and much more. If you were a nillys-fan, but want a twist to the nostalgia, this is definitely it. ",
+    website: "https://halocelsius.com/Assets/IcaStore.html",
+    discord: "https://discord.gg/EJbhDsXhW4",
+  },
 ];
 
 export default function Home() {
