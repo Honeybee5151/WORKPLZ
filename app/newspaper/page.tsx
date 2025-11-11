@@ -117,6 +117,7 @@ export default function NewspaperMain() {
         </div>
 
         <div className="bg-[#2f3136] rounded-xl p-8 mb-8 border border-[#202225]">
+          <Link href={selectedNewspaper.fullUrl} className="block hover:opacity-90 transition-opacity">
             <div className="relative bg-[#36393f] rounded-lg overflow-hidden border-2 border-[#5865f2] hover:border-[#7289da] transition-colors cursor-pointer">
               <Image src={selectedNewspaper.coverImage} alt={`Issue ${selectedNewspaper.issue} Cover`} width={1200} height={1600} className="w-full h-auto" unoptimized />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
