@@ -113,10 +113,6 @@ export default function NewspaperMain() {
             <button onClick={goToPrevious} disabled={selectedNewspaper.issue === newspapers[newspapers.length - 1].issue} className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-colors ${selectedNewspaper.issue === newspapers[newspapers.length - 1].issue ? 'bg-[#40444b] text-gray-600 cursor-not-allowed' : 'bg-[#5865f2] text-white hover:bg-[#4752c4]'}`}>
               ← Previous
             </button>
-            <div className="text-center">
-              <p className="text-2xl font-bold text-white">{selectedNewspaper.title}</p>
-              <p className="text-gray-400">{selectedNewspaper.date}</p>
-            </div>
             <button onClick={goToNext} disabled={selectedNewspaper.issue === newspapers[0].issue} className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-colors ${selectedNewspaper.issue === newspapers[0].issue ? 'bg-[#40444b] text-gray-600 cursor-not-allowed' : 'bg-[#5865f2] text-white hover:bg-[#4752c4]'}`}>
               Next →
             </button>
