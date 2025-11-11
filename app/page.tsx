@@ -16,7 +16,7 @@ const servers = [
     id: "tsrealms",
     name: "T's Realms",
     image: "/serverIcons/tidanRealmsIcon.png",
-    description: "This is a popular RotMG private server with custom features and an active community.",
+    description: "Tidan's realms is one of the most unique private servers out there, yet it is made by the one man, the man--the legend: Tidan. It will have a quest-book system, a revamped realm, expeditions and much more. It is in paid testing as of right now.",
     website: "https://server2.example.com",
     discord: "https://discord.gg/tsrealms",
   },
