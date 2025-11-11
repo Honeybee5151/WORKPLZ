@@ -217,7 +217,7 @@ export default function Home() {
                   willChange: 'transform',
                 }}
               >
-                {servers.concat(servers).map((server, i) => {
+                {servers.map((server, i) => {
                   const actualIndex = i % servers.length;
                   const isSelected = selectedServer === actualIndex;
                   const playerCount = playerCounts[server.id] || 'N/A';
