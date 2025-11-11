@@ -8,9 +8,9 @@ const servers = [
     id: "evershade",
     name: "Evershade",
     image: "/serverIcons/evershadeImage",
-    description: "Evershade is a popular RotMG private server with custom features and an active community. Experience unique dungeons and items!",
+    description: "Evershade is one of the most hyped upcoming games (not biased), which is set to release open-beta in early 2026. There is dashing, jumping, a nexus-dungeon-portal and much more in this rotmg-pserver. Welcome in!",
     website: "https://evershade.example.com",
-    discord: "https://discord.gg/evershade",
+    discord: "https://discord.gg/Y4Am4yg4GT",
   },
   {
     id: "tsrealms",
