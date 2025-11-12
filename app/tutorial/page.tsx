@@ -49,7 +49,7 @@ export default function Tutorial() {
               >
                 realmdex community
               </a>
-              {" "}is a great resource for that. A specific discord is excellent if you are in need of spriters:. {" "}
+              {" "}is a great resource for that. There is also a discord, which is excellent if you are in need of spriters: {" "}
                <a 
                 href="https://discord.gg/FmKsHuNBqy" 
                 target="_blank" 
