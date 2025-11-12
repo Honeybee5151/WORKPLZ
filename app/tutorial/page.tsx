@@ -49,9 +49,17 @@ export default function Tutorial() {
               >
                 realmdex community
               </a>
-              {" "}is a great resource for that.
+              {" "}is a great resource for that. A specific discord is excellent if you are in need of spriters:. {" "}
+               <a 
+                href="https://discord.gg/FmKsHuNBqy" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-[#5865f2] hover:text-[#7289da] font-semibold underline transition-colors"
+              >
+                ideas discord
+              </a>
             </p>
-
+              
             <p>
               You can also contact me on Discord{" "}
               <span className="text-[#5865f2] font-semibold">@shangapallia</span>
