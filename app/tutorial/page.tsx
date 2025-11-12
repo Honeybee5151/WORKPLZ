@@ -58,6 +58,7 @@ export default function Tutorial() {
               >
                 ideas discord
               </a>
+              .
             </p>
               
             <p>
