@@ -13,8 +13,18 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "rotmgps",
-  description: "Your hub for everything rotmg-private-server",
+  title: "RotMG Private Servers Hub - Find the Best Realm of the Mad God Servers | ROTMGPS",
+  description: "Discover and connect with the best RotMG private servers. Browse active servers, player counts, read the latest news from The Realmder, and learn how to get started with Realm of the Mad God private servers.",
+  keywords: "rotmg private server, realm of the mad god private server, rotmg pserver, rotmg hub, rotmg servers, rotmg private server list, rotmg community, rotmg news, rotmg tutorial, how to join rotmg private server",
+  openGraph: {
+    title: "RotMG Private Servers Hub - ROTMGPS",
+    description: "Your hub for everything rotmg-private-server. Browse servers, read news, and get started today.",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
