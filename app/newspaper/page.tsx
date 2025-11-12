@@ -44,15 +44,15 @@ export default function NewspaperMain() {
 
   const goToPrevious = () => {
     const currentIndex = newspapers.findIndex(n => n.issue === selectedNewspaper.issue);
-    if (currentIndex < newspapers.length - 1) {
-      setSelectedNewspaper(newspapers[currentIndex + 1]);
+    if (currentIndex > 0) {
+      setSelectedNewspaper(newspapers[currentIndex - 1]);
     }
   };
 
   const goToNext = () => {
     const currentIndex = newspapers.findIndex(n => n.issue === selectedNewspaper.issue);
-    if (currentIndex > 0) {
-      setSelectedNewspaper(newspapers[currentIndex - 1]);
+    if (currentIndex < newspapers.length - 1) {
+      setSelectedNewspaper(newspapers[currentIndex + 1]);
     }
   };
 
@@ -79,10 +79,10 @@ export default function NewspaperMain() {
       <main className="container mx-auto px-6 py-12 max-w-6xl">
         <div className="flex items-start justify-between mb-12">
           <div className="flex gap-2">
-            <button onClick={goToPrevious} disabled={selectedNewspaper.issue === newspapers[newspapers.length - 1].issue} className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-colors ${selectedNewspaper.issue === newspapers[newspapers.length - 1].issue ? 'bg-[#40444b] text-gray-600 cursor-not-allowed' : 'bg-[#5865f2] text-white hover:bg-[#4752c4]'}`}>
+            <button onClick={goToPrevious} disabled={selectedNewspaper.issue === newspapers[0].issue} className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-colors ${selectedNewspaper.issue === newspapers[0].issue ? 'bg-[#40444b] text-gray-600 cursor-not-allowed' : 'bg-[#5865f2] text-white hover:bg-[#4752c4]'}`}>
               ← Previous
             </button>
-            <button onClick={goToNext} disabled={selectedNewspaper.issue === newspapers[0].issue} className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-colors ${selectedNewspaper.issue === newspapers[0].issue ? 'bg-[#40444b] text-gray-600 cursor-not-allowed' : 'bg-[#5865f2] text-white hover:bg-[#4752c4]'}`}>
+            <button onClick={goToNext} disabled={selectedNewspaper.issue === newspapers[newspapers.length - 1].issue} className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-colors ${selectedNewspaper.issue === newspapers[newspapers.length - 1].issue ? 'bg-[#40444b] text-gray-600 cursor-not-allowed' : 'bg-[#5865f2] text-white hover:bg-[#4752c4]'}`}>
               Next →
             </button>
           </div>
