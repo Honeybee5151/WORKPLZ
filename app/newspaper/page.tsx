@@ -77,42 +77,37 @@ export default function NewspaperMain() {
       </header>
 
       <main className="container mx-auto px-6 py-12 max-w-6xl">
-        <div className="text-center mb-12">
-          <h1 className="text-5xl font-bold text-white mb-3" style={{ fontFamily: 'Georgia, serif' }}>
-            The Realmder
-          </h1>
-          <p className="text-xl text-gray-400 italic">Your monthly source of rotmg-pserver news</p>
-        </div>
-
-        <div className="bg-[#2f3136] rounded-xl p-6 mb-8 border border-[#202225]">
-          <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-            <div className="flex gap-2">
-              <button onClick={goToPrevious} disabled={selectedNewspaper.issue === newspapers[newspapers.length - 1].issue} className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-colors ${selectedNewspaper.issue === newspapers[newspapers.length - 1].issue ? 'bg-[#40444b] text-gray-600 cursor-not-allowed' : 'bg-[#5865f2] text-white hover:bg-[#4752c4]'}`}>
-                ← Previous
-              </button>
-              <button onClick={goToNext} disabled={selectedNewspaper.issue === newspapers[0].issue} className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-colors ${selectedNewspaper.issue === newspapers[0].issue ? 'bg-[#40444b] text-gray-600 cursor-not-allowed' : 'bg-[#5865f2] text-white hover:bg-[#4752c4]'}`}>
-                Next →
-              </button>
-            </div>
-            <div className="flex gap-2 items-center">
-              <span className="text-gray-300 font-semibold">Issue #</span>
-              <input
-                type="number"
-                value={searchIssue}
-                onChange={(e) => setSearchIssue(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
-                placeholder="1"
-                className="bg-[#40444b] border border-[#5865f2] text-white px-4 py-2 rounded-lg w-24 text-center"
-                min="1"
-              />
-              <button onClick={handleSearch} className="bg-[#3ba55d] hover:bg-[#2d7d46] text-white font-semibold py-2 px-6 rounded-lg transition-colors">
-                Go
-              </button>
-            </div>
-            <div className="text-center">
-              <p className="text-gray-400 text-sm">Viewing</p>
-              <p className="text-white font-bold text-lg">Issue #{selectedNewspaper.issue}</p>
-            </div>
+        <div className="flex items-start justify-between mb-12">
+          <div className="flex gap-2">
+            <button onClick={goToPrevious} disabled={selectedNewspaper.issue === newspapers[newspapers.length - 1].issue} className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-colors ${selectedNewspaper.issue === newspapers[newspapers.length - 1].issue ? 'bg-[#40444b] text-gray-600 cursor-not-allowed' : 'bg-[#5865f2] text-white hover:bg-[#4752c4]'}`}>
+              ← Previous
+            </button>
+            <button onClick={goToNext} disabled={selectedNewspaper.issue === newspapers[0].issue} className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-colors ${selectedNewspaper.issue === newspapers[0].issue ? 'bg-[#40444b] text-gray-600 cursor-not-allowed' : 'bg-[#5865f2] text-white hover:bg-[#4752c4]'}`}>
+              Next →
+            </button>
+          </div>
+          
+          <div className="text-center">
+            <h1 className="text-5xl font-bold text-white mb-3" style={{ fontFamily: 'Georgia, serif' }}>
+              The Realmder
+            </h1>
+            <p className="text-xl text-gray-400 italic">Your monthly source of rotmg-pserver news</p>
+          </div>
+          
+          <div className="flex gap-2 items-center">
+            <span className="text-gray-300 font-semibold">Issue #</span>
+            <input
+              type="number"
+              value={searchIssue}
+              onChange={(e) => setSearchIssue(e.target.value)}
+              onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+              placeholder="1"
+              className="bg-[#40444b] border border-[#5865f2] text-white px-4 py-2 rounded-lg w-24 text-center"
+              min="1"
+            />
+            <button onClick={handleSearch} className="bg-[#3ba55d] hover:bg-[#2d7d46] text-white font-semibold py-2 px-6 rounded-lg transition-colors">
+              Go
+            </button>
           </div>
         </div>
 
