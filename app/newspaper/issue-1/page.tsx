@@ -166,7 +166,7 @@ export default function NewspaperPage() {
             }}>
               The Realmder
             </h1>
-            <p className="text-xl text-gray-400 italic">Your Daily Source for RotMG Private Server News</p>
+            <p className="text-xl text-gray-400 italic">Your monthly source of rotmg-pserver news</p>
             <p className="text-sm text-gray-500 mt-2">{page.date}</p>
           </div>
         </div>
