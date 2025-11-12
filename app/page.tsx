@@ -3,12 +3,6 @@ import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-export const metadata: Metadata = {
-  title: "RotMG Private Servers Hub - Find the Best Realm of the Mad God Servers",
-  description: "Discover and connect with the best RotMG private servers. Browse active servers, read the latest news, and learn how to get started with private servers.",
-  keywords: "rotmg private server, realm of the mad god private server, rotmg pserver, rotmg hub, rotmg servers",
-};
-
 const servers = [
   {
     id: "evershade",
