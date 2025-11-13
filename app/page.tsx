@@ -31,7 +31,7 @@ const servers = [
   {
     id: "valor",
     name: "Valor",
-    image: "/serverIcons/valorIcon.png",
+    image: "/serverIcons/valorIcon2.png",
     description: "Valor is owned by the aura-boss himeself: Arcanuo. Enjoy csgo-cases, custom content, skilltree and much more in this rotmg-private-server. It dates back to the revenge of the fallen days, and has had a peak of over 1000 players. Currently the valor team is working on a custom game, which the website link is tied to. Check them out!",
     website: "https://valorserver.com/",
     discord: "https://discord.gg/valormc",
