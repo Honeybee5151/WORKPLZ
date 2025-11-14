@@ -83,26 +83,20 @@ export default function NewspaperMain() {
             <p className="text-xl text-gray-400 italic">Your monthly source of rotmg-pserver news</p>
           </div>
           
-          <div className="flex flex-col gap-4 items-end">
-            <div className="flex gap-2 items-center">
-              <span className="text-gray-300 font-semibold">Issue #</span>
-              <input
-                type="number"
-                value={searchIssue}
-                onChange={(e) => setSearchIssue(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
-                placeholder="1"
-                className="bg-[#40444b] border border-[#5865f2] text-white px-4 py-2 rounded-lg w-24 text-center"
-                min="1"
-              />
-              <button onClick={handleSearch} className="bg-[#3ba55d] hover:bg-[#2d7d46] text-white font-semibold py-2 px-6 rounded-lg transition-colors">
-                Go
-              </button>
-            </div>
-            <div className="text-right">
-              <p className="text-gray-400 text-sm">Viewing</p>
-              <p className="text-white font-bold text-lg">Issue #{selectedNewspaper.issue}</p>
-            </div>
+          <div className="flex gap-2 items-center">
+            <span className="text-gray-300 font-semibold">Issue #</span>
+            <input
+              type="number"
+              value={searchIssue}
+              onChange={(e) => setSearchIssue(e.target.value)}
+              onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+              placeholder="1"
+              className="bg-[#40444b] border border-[#5865f2] text-white px-4 py-2 rounded-lg w-24 text-center"
+              min="1"
+            />
+            <button onClick={handleSearch} className="bg-[#3ba55d] hover:bg-[#2d7d46] text-white font-semibold py-2 px-6 rounded-lg transition-colors">
+              Go
+            </button>
           </div>
         </div>
 
