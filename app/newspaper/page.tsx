@@ -3,7 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-// Saample newspaper data
+// Sample newspaper data
 const newspapers = [
   {
     issue: 1,
@@ -30,7 +30,7 @@ const newspapers = [
 
 export default function NewspaperMain() {
   const [searchIssue, setSearchIssue] = useState("");
-  const [selectedNewspaper, setSelectedNewspaper] = useState(newspapers[0]);
+  const [selectedNewspaper, setSelectedNewspaper] = useState(newspapers[newspapers.length - 1]);
 
   const handleSearch = () => {
     const issueNum = parseInt(searchIssue);
