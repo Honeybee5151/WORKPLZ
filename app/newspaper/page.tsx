@@ -12,7 +12,7 @@ const newspapers = [
     coverImage: "/newspapers/issue-1-cover.png",
     fullUrl: "/newspaper/issue-1",
   },
-  
+
 ];
 
 export default function NewspaperMain() {
