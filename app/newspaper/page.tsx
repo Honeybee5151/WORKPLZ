@@ -12,20 +12,7 @@ const newspapers = [
     coverImage: "/newspapers/issue-1-cover.png",
     fullUrl: "/newspaper/issue-1",
   },
-  {
-    issue: 2,
-    date: "November 11, 2025",
-    title: "Community Events and Tournaments",
-    coverImage: "/newspapers/issue-2-cover.png",
-    fullUrl: "/newspaper/issue-2",
-  },
-  {
-    issue: 3,
-    date: "November 12, 2025",
-    title: "Developer Insights and Updates",
-    coverImage: "/newspapers/issue-3-cover.png",
-    fullUrl: "/newspaper/issue-3",
-  },
+
 ];
 
 export default function NewspaperMain() {
