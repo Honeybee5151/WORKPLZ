@@ -7,23 +7,23 @@ export default function EvershadeTestingPage() {
   const [isTestingActive, setIsTestingActive] = useState(false);
   const [nextTestTime, setNextTestTime] = useState<Date | null>(null);
 
-  // Testing time in Swedish timezone (Europe/Stockholm)
-  const TESTING_HOUR = 23; // 11 PM Swedish time
+  // Testing time in Eastern Time (America/New_York)
+  const TESTING_HOUR = 17; // 5 PM EST/EDT (which is 22:00 UTC / 23:00 Swedish)
   const TESTING_MINUTE = 0;
   const TESTING_DURATION_HOURS = 2;
-  const TIMEZONE = "Europe/Stockholm";
+  const TIMEZONE = "America/New_York";
 
   useEffect(() => {
     const calculateNextTestTime = () => {
       const now = new Date();
       
-      // Create a date in Swedish timezone
-      const nowSwedish = new Date(now.toLocaleString("en-US", { timeZone: TIMEZONE }));
-      const testStart = new Date(nowSwedish);
+      // Create a date in Eastern timezone
+      const nowET = new Date(now.toLocaleString("en-US", { timeZone: TIMEZONE }));
+      const testStart = new Date(nowET);
       testStart.setHours(TESTING_HOUR, TESTING_MINUTE, 0, 0);
 
       // If we've passed today's test time, set it for tomorrow
-      if (nowSwedish > testStart) {
+      if (nowET > testStart) {
         testStart.setDate(testStart.getDate() + 1);
       }
 
@@ -33,20 +33,20 @@ export default function EvershadeTestingPage() {
     const updateCountdown = () => {
       const now = new Date();
       
-      // Get current time in Swedish timezone
-      const nowSwedish = new Date(now.toLocaleString("en-US", { timeZone: TIMEZONE }));
+      // Get current time in Eastern timezone
+      const nowET = new Date(now.toLocaleString("en-US", { timeZone: TIMEZONE }));
       
-      // Create test start time for today in Swedish timezone
-      const testStart = new Date(nowSwedish);
+      // Create test start time for today in Eastern timezone
+      const testStart = new Date(nowET);
       testStart.setHours(TESTING_HOUR, TESTING_MINUTE, 0, 0);
 
       const testEnd = new Date(testStart);
       testEnd.setHours(testStart.getHours() + TESTING_DURATION_HOURS);
 
       // Check if we're currently in testing period
-      if (nowSwedish >= testStart && nowSwedish < testEnd) {
+      if (nowET >= testStart && nowET < testEnd) {
         setIsTestingActive(true);
-        const timeLeft = testEnd.getTime() - nowSwedish.getTime();
+        const timeLeft = testEnd.getTime() - nowET.getTime();
         const hours = Math.floor(timeLeft / (1000 * 60 * 60));
         const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
@@ -55,7 +55,7 @@ export default function EvershadeTestingPage() {
         setIsTestingActive(false);
         const nextTest = calculateNextTestTime();
         setNextTestTime(nextTest);
-        const timeUntilTest = nextTest.getTime() - nowSwedish.getTime();
+        const timeUntilTest = nextTest.getTime() - nowET.getTime();
         const hours = Math.floor(timeUntilTest / (1000 * 60 * 60));
         const minutes = Math.floor((timeUntilTest % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((timeUntilTest % (1000 * 60)) / 1000);
@@ -96,7 +96,7 @@ export default function EvershadeTestingPage() {
               Evershade Testing
             </h1>
             <p className="text-2xl text-gray-400">
-              Daily testing schedule: {TESTING_HOUR}:00 - {(TESTING_HOUR + TESTING_DURATION_HOURS) % 24}:00 (Swedish Time)
+              Daily testing schedule: {TESTING_HOUR}:00 - {(TESTING_HOUR + TESTING_DURATION_HOURS) % 24}:00 EST/EDT
             </p>
           </div>
 
@@ -131,7 +131,7 @@ export default function EvershadeTestingPage() {
                 </div>
                 <div className="bg-[#36393f] rounded-lg p-6 border-l-4 border-[#5865f2]">
                   <p className="text-xl text-gray-300 mb-2">
-                    Testing starts at {TESTING_HOUR}:00 Swedish Time and runs for {TESTING_DURATION_HOURS} hours
+                    Testing starts at {TESTING_HOUR}:00 EST/EDT and runs for {TESTING_DURATION_HOURS} hours
                   </p>
                   {nextTestTime && (
                     <p className="text-lg text-gray-400">
@@ -148,7 +148,7 @@ export default function EvershadeTestingPage() {
             <div className="space-y-3 text-gray-300">
               <p className="flex items-start gap-2">
                 <span className="text-[#5865f2] font-bold">•</span>
-                <span>Testing occurs daily at 23:00 Swedish Time (CET/CEST)</span>
+                <span>Testing occurs daily at 17:00 EST/EDT (5:00 PM Eastern Time)</span>
               </p>
               <p className="flex items-start gap-2">
                 <span className="text-[#5865f2] font-bold">•</span>
